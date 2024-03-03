@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdn38g745brbk"]
+
+[ext_resource type="Script" path="res://scripts/camera_script.gd" id="1_6he3t"]
+[ext_resource type="ArrayMesh" uid="uid://cjl2km26bja1k" path="res://scenes/Camera/meshes/camera_body_mesh.res" id="1_i6dmn"]
+[ext_resource type="ArrayMesh" uid="uid://dr2hhfrwg7dh1" path="res://scenes/Camera/meshes/camera_flash_mesh.res" id="2_eqyap"]
+[ext_resource type="ArrayMesh" uid="uid://bjdalfunjfxc6" path="res://scenes/Camera/meshes/camera_knob_mesh.res" id="3_ha1er"]
+[ext_resource type="ArrayMesh" uid="uid://kvaldvnwueh8" path="res://scenes/Camera/meshes/camera_lens_mesh.res" id="4_hhml2"]
+[ext_resource type="ArrayMesh" uid="uid://dh6l71yxr7w8l" path="res://scenes/Camera/meshes/camera_view_mesh.res" id="5_x5uni"]
+[ext_resource type="Material" uid="uid://6r171dhf0fw4" path="res://scenes/Camera/material/camera_viewfinder_material.tres" id="6_d0ska"]
+
+[node name="Camera" type="Node3D"]
+script = ExtResource("1_6he3t")
+camera_location_path = NodePath("Marker3D")
+subviewport_path = NodePath("SubViewport")
+viewfinder_path = NodePath("Viewfinder")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = ExtResource("1_i6dmn")
+
+[node name="Flash" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = ExtResource("2_eqyap")
+
+[node name="Knob" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116264, 0.124367, 0)
+cast_shadow = 0
+mesh = ExtResource("3_ha1er")
+
+[node name="Lens" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = ExtResource("4_hhml2")
+
+[node name="Viewfinder" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = ExtResource("5_x5uni")
+surface_material_override/1 = ExtResource("6_d0ska")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0404129, 0, -0.10351)
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0404129, 0, -0.10351)

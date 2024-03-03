@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://co8cltwdvludw"]
+
+[ext_resource type="PackedScene" uid="uid://cjkn0665csuey" path="res://scenes/player.tscn" id="1_26kj7"]
+[ext_resource type="Material" uid="uid://dtwalkvg65w1a" path="res://debug_1x1.tres" id="1_jbvso"]
+[ext_resource type="Shader" path="res://scenes/Camera/material/camera_viewfinder_shader.gdshader" id="3_h0ilb"]
+[ext_resource type="Texture2D" uid="uid://c288e2svk4dbe" path="res://scenes/Camera/textures/blurr.png" id="4_ab6e8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xexnu"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_1qcvi"]
+sky_material = SubResource("ProceduralSkyMaterial_xexnu")
+
+[sub_resource type="Environment" id="Environment_r7h31"]
+background_mode = 2
+sky = SubResource("Sky_1qcvi")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_gukyl"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lific"]
+points = PackedVector3Array(-10, -0.05, -10, -10, 0.05, -10, 10, -0.05, -10, -10, -0.05, 10, -10, 0.05, 10, 10, 0.05, -10, 10, -0.05, 10, 10, 0.05, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dc7h0"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_h0ilb")
+shader_parameter/pixelation_ammount = 3
+shader_parameter/point_size = 1.0
+shader_parameter/min_rough = 0.25
+shader_parameter/max_rough = 0.35
+shader_parameter/texture_roughness = ExtResource("4_ab6e8")
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3qlby"]
+auto_exposure_enabled = true
+
+[node name="Test Scene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r7h31")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_override = ExtResource("1_jbvso")
+mesh = SubResource("BoxMesh_gukyl")
+skeleton = NodePath("../../Player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_lific")
+
+[node name="Player" parent="." instance=ExtResource("1_26kj7")]
+
+[node name="Viewfinder" parent="Player/Camera3D/Camera" index="4"]
+surface_material_override/1 = SubResource("ShaderMaterial_dc7h0")
+
+[node name="Camera3D" parent="Player/Camera3D/Camera/SubViewport" index="0"]
+attributes = SubResource("CameraAttributesPractical_3qlby")
+
+[editable path="Player"]
+[editable path="Player/Camera3D/Camera"]

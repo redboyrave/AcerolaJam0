@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dtsuheoe77i0w"]
+
+[ext_resource type="Shader" path="res://scenes/Camera/material/lens_shader.gdshader" id="1_uw1qr"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uw1qr")
+shader_parameter/shallow_color = Color(0.698039, 0.835294, 0.898039, 1)
+shader_parameter/deep_color = Color(0.160784, 0.141176, 0.356863, 1)
+shader_parameter/depth_blend = 0.25
