@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dcuuj3cfbb0q0"]
+
+[ext_resource type="Shader" uid="uid://b0rsy6b5sb0qg" path="res://scenes/Trees/branch_sway_shader.tres" id="1_6fron"]
+[ext_resource type="Texture2D" uid="uid://dfk53h7ee3na2" path="res://scenes/Trees/textures/branch04.png" id="2_85xof"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_thsi8"]
+seed = 3
+frequency = 0.0056
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rlbga"]
+in_3d_space = true
+seamless = true
+noise = SubResource("FastNoiseLite_thsi8")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6fron")
+shader_parameter/sway_intensity = 1.0
+shader_parameter/wind_noise = SubResource("NoiseTexture2D_rlbga")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/texture_albedo = ExtResource("2_85xof")
+shader_parameter/roughness = 0.744
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = null
+shader_parameter/normal_intensity = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = null

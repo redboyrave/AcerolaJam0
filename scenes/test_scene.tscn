@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://co8cltwdvludw"]
+[gd_scene load_steps=14 format=3 uid="uid://co8cltwdvludw"]
 
 [ext_resource type="PackedScene" uid="uid://cjkn0665csuey" path="res://scenes/player.tscn" id="1_26kj7"]
-[ext_resource type="Material" uid="uid://dtwalkvg65w1a" path="res://debug_1x1.tres" id="1_jbvso"]
+[ext_resource type="Material" uid="uid://pg4tbtu0hhco" path="res://resources/Materials/Ground/forest_leaves_material.tres" id="1_nh7j4"]
 [ext_resource type="Shader" path="res://scenes/Camera/material/camera_viewfinder_shader.gdshader" id="3_h0ilb"]
 [ext_resource type="Texture2D" uid="uid://c288e2svk4dbe" path="res://scenes/Camera/textures/blurr.png" id="4_ab6e8"]
+[ext_resource type="PackedScene" uid="uid://b4i2x8abxwu6t" path="res://scenes/Trees/Tree_Bundle_01.tscn" id="5_x7yta"]
+[ext_resource type="PackedScene" uid="uid://bqh6bafejxacq" path="res://scenes/Trees/Tree_Bundle_02.tscn" id="6_2pxj0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xexnu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -56,7 +58,7 @@ shadow_enabled = true
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-material_override = ExtResource("1_jbvso")
+material_override = ExtResource("1_nh7j4")
 mesh = SubResource("BoxMesh_gukyl")
 skeleton = NodePath("../../Player")
 
@@ -70,6 +72,21 @@ surface_material_override/1 = SubResource("ShaderMaterial_dc7h0")
 
 [node name="Camera3D" parent="Player/Camera3D/Camera/SubViewport" index="0"]
 attributes = SubResource("CameraAttributesPractical_3qlby")
+
+[node name="TreeBundle" parent="." instance=ExtResource("5_x7yta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26156, 0.0500002, 6.28926)
+
+[node name="TreeBundle2" parent="." instance=ExtResource("5_x7yta")]
+transform = Transform3D(0.962805, 0, -0.270197, 0, 1, 0, 0.270197, 0, 0.962805, -6.01917, 0.0499992, 6.68338)
+
+[node name="TreeBundle3" parent="." instance=ExtResource("5_x7yta")]
+transform = Transform3D(-0.996144, 0, -0.0877295, 0, 1, 0, 0.0877295, 0, -0.996144, 0.168567, 0.0500002, 6.69919)
+
+[node name="TreeBundle_02" parent="." instance=ExtResource("6_2pxj0")]
+transform = Transform3D(-0.220902, 0, 0.975296, 0, 1, 0, -0.975296, 0, -0.220902, 7.25389, 0.0500011, -4.82997)
+
+[node name="TreeBundle_03" parent="." instance=ExtResource("6_2pxj0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55241, -0.55654, 1.74957)
 
 [editable path="Player"]
 [editable path="Player/Camera3D/Camera"]

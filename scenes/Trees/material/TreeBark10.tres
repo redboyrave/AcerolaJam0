@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://jb06lq0kymmm"]
+
+[ext_resource type="Texture2D" uid="uid://c2pg6pnjllrw7" path="res://scenes/Trees/textures/bark10.png" id="1_fg4ex"]
+[ext_resource type="Texture2D" uid="uid://bwnto8n1hs48a" path="res://scenes/Trees/textures/bark10_normal.png" id="2_dtg6p"]
+[ext_resource type="Texture2D" uid="uid://dxti02wsd6e5w" path="res://scenes/Trees/textures/bark10_roughness.png" id="3_gej5s"]
+
+[resource]
+albedo_texture = ExtResource("1_fg4ex")
+roughness_texture = ExtResource("3_gej5s")
+normal_enabled = true
+normal_texture = ExtResource("2_dtg6p")

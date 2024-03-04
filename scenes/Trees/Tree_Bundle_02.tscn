@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqh6bafejxacq"]
+
+[ext_resource type="ArrayMesh" uid="uid://cc0vockv60l0r" path="res://scenes/Trees/meshes/trees_Tree_001.res" id="1_y5gqa"]
+[ext_resource type="ArrayMesh" uid="uid://ju8r2qxanl3i" path="res://scenes/Trees/meshes/trees_Tree_002.res" id="2_knyow"]
+[ext_resource type="ArrayMesh" uid="uid://bgnps2ocuebp6" path="res://scenes/Trees/meshes/trees_Tree_003.res" id="3_s08if"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_degck"]
+transform_format = 1
+instance_count = 7
+mesh = ExtResource("1_y5gqa")
+buffer = PackedFloat32Array(-0.638674, 0, -1.05539, -1.57232, 0, 1.2336, 0, 0, 1.05539, 0, -0.638674, -1.99302, -0.894809, 0, 0.0458171, -1.9353, 0, 0.895981, 0, 0, -0.0458171, 0, -0.894809, -1.96882, -0.828704, 0, 0.289943, 1.25159, 0, 0.877962, 0, 0, -0.289943, 0, -0.828704, -1.57337, -0.679913, 0, 0.400468, -1.76423, 0, 0.789086, 0, 0, -0.400468, 0, -0.679913, 0.901523, -0.0791093, 0, -0.920258, -0.799885, 0, 0.923652, 0, 0, 0.920258, 0, -0.0791093, 2.16384, -0.228545, 0, -0.82196, 2.4861, 0, 0.853142, 0, 0, 0.82196, 0, -0.228545, 1.10679, -0.0237923, 0, -0.876434, -0.37322, 0, 0.876757, 0, 0, 0.876434, 0, -0.0237923, 2.24551)
+
+[sub_resource type="MultiMesh" id="MultiMesh_kosmi"]
+transform_format = 1
+instance_count = 7
+mesh = ExtResource("2_knyow")
+buffer = PackedFloat32Array(0.639157, 0, -1.04069, 0.590809, 0, 1.2213, 0, 0, 1.04069, 0, 0.639157, 2.14338, -0.918596, 0, -0.630027, 2.17251, 0, 1.11389, 0, 0, 0.630027, 0, -0.918596, -2.19093, -0.227628, 0, -0.877561, 2.41365, 0, 0.906602, 0, 0, 0.877561, 0, -0.227628, 1.50276, -0.178479, 0, -0.74645, 2.24801, 0, 0.767491, 0, 0, 0.74645, 0, -0.178479, 2.0305, -0.42937, 0, -0.645655, 2.21648, 0, 0.775389, 0, 0, 0.645655, 0, -0.42937, -1.69057, -0.758911, 0, 0.10608, -1.94918, 0, 0.766289, 0, 0, -0.10608, 0, -0.758911, -1.66415, -0.760756, 0, 0.0517395, -0.908207, 0, 0.762514, 0, 0, -0.0517395, 0, -0.760756, 0.407207)
+
+[sub_resource type="MultiMesh" id="MultiMesh_pwlt8"]
+transform_format = 1
+instance_count = 7
+mesh = ExtResource("3_s08if")
+buffer = PackedFloat32Array(-0.86107, 0, 0.30777, 1.20946, 0, 0.91442, 0, 0, -0.30777, 0, -0.86107, -1.49766, 0.93738, 0, -0.681992, 1.10538, 0, 1.15922, 0, 0, 0.681992, 0, 0.93738, 1.7665, -0.750526, 0, 0.996275, -0.663906, 0, 1.24734, 0, 0, -0.996275, 0, -0.750526, -1.94181, 0.29089, 0, -1.159, -0.0763345, 0, 1.19495, 0, 0, 1.159, 0, 0.29089, 0.265475, -0.701722, 0, 0.765693, 1.22839, 0, 1.0386, 0, 0, -0.765693, 0, -0.701722, -1.27642, -0.824638, 0, 0.28835, -0.100439, 0, 0.873598, 0, 0, -0.28835, 0, -0.824638, -1.09104, -0.795067, 0, -0.592363, 0.115829, 0, 0.991477, 0, 0, 0.592363, 0, -0.795067, -0.892939)
+
+[node name="TreeBundle_02" type="Node3D"]
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_degck")
+
+[node name="MultiMeshInstance3D2" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_kosmi")
+
+[node name="MultiMeshInstance3D3" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_pwlt8")

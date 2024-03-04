@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://cwyx6s430gawe"]
+
+[ext_resource type="Texture2D" uid="uid://b1ut6kdk01tia" path="res://resources/Materials/Ground/path_dirt/park_dirt_diff_1k.png" id="1_n1p6o"]
+[ext_resource type="Texture2D" uid="uid://cqgrafuutvfjw" path="res://resources/Materials/Ground/path_dirt/park_dirt_ao_1k.png" id="2_dsva7"]
+[ext_resource type="Texture2D" uid="uid://b61ik7fkabbdy" path="res://resources/Materials/Ground/path_dirt/park_dirt_disp_1k.png" id="3_sdris"]
+[ext_resource type="Texture2D" uid="uid://4euux4qxiryk" path="res://resources/Materials/Ground/path_dirt/park_dirt_nor_gl_1k.png" id="4_yfhe5"]
+[ext_resource type="Texture2D" uid="uid://c6six4clj3jxc" path="res://resources/Materials/Ground/path_dirt/park_dirt_rough_1k.png" id="5_35g0g"]
+
+[resource]
+albedo_texture = ExtResource("1_n1p6o")
+roughness_texture = ExtResource("5_35g0g")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("4_yfhe5")
+ao_enabled = true
+ao_texture = ExtResource("2_dsva7")
+ao_texture_channel = 4
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_sdris")

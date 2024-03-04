@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmagawq8ug0b"]
+
+[ext_resource type="ArrayMesh" uid="uid://ddie5mqpn3a1l" path="res://scenes/Rocks/meshes/rocks_rocks_003.res" id="1_qfxfm"]
+
+[node name="Rock3" type="MeshInstance3D"]
+mesh = ExtResource("1_qfxfm")
