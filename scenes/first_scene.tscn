@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://bp2cjpvxrkb3h"]
+
+[ext_resource type="PackedScene" uid="uid://cjkn0665csuey" path="res://scenes/player.tscn" id="1_dayly"]
+[ext_resource type="Material" uid="uid://cwyx6s430gawe" path="res://resources/Materials/Ground/path_dirt.tres" id="1_vc3yk"]
+[ext_resource type="PackedScene" uid="uid://dnsjnpl1lsjyd" path="res://scenes/Logs/log_stump_3.tscn" id="2_hnd2d"]
+[ext_resource type="Material" uid="uid://pg4tbtu0hhco" path="res://resources/Materials/Ground/forest_leaves_material.tres" id="2_wx5m7"]
+[ext_resource type="Script" path="res://scripts/events/trigger-01.gd" id="3_50jia"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u4sio"]
+sky_top_color = Color(0.117647, 0.0862745, 0.298039, 1)
+sky_horizon_color = Color(0.542157, 0.532353, 0.582353, 1)
+sky_energy_multiplier = 0.1
+ground_bottom_color = Color(0.0509804, 0.0431373, 0.0313726, 1)
+ground_horizon_color = Color(0.542157, 0.532353, 0.582353, 1)
+
+[sub_resource type="Sky" id="Sky_uciil"]
+sky_material = SubResource("ProceduralSkyMaterial_u4sio")
+
+[sub_resource type="Environment" id="Environment_j7wew"]
+background_mode = 2
+sky = SubResource("Sky_uciil")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_7wta2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7lrcf"]
+size = Vector3(8.6416, 5.28418, 3.396)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j7wew")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.48481, 0.87462, 0, -0.87462, 0.48481, 0, 0, 0)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(22.615, 0, 0, 0, 0.17343, 0, 0, 0, 7.07158, 0, -0.0681198, 0)
+material_override = ExtResource("1_vc3yk")
+use_collision = true
+mesh = SubResource("BoxMesh_7wta2")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(16.4301, 0, -4.85924, 0, 0.17343, 0, 15.5399, 0, 5.13761, 15.5286, 0, 7.4407)
+material_override = ExtResource("2_wx5m7")
+use_collision = true
+mesh = SubResource("BoxMesh_7wta2")
+
+[node name="Player" parent="." instance=ExtResource("1_dayly")]
+transform = Transform3D(-0.484046, 0, -0.875042, 0, 1, 0, 0.875042, 0, -0.484046, 0, 0, 0)
+step_sound_time = 0.5
+
+[node name="LogStump3" parent="." instance=ExtResource("2_hnd2d")]
+transform = Transform3D(0.137785, 0.635519, 0.513282, -0.656539, 0.300423, 1.0257e-08, -0.154202, -0.711239, 0.458637, 14.4175, 1.68568, 7.24409)
+
+[node name="Trigger - 01" type="Area3D" parent="." groups=["Triggers"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1011, 2.3055, 13.8348)
+collision_layer = 6
+collision_mask = 2
+script = ExtResource("3_50jia")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger - 01"]
+transform = Transform3D(0.669377, 0, 0.742923, 0, 1, 0, -0.742923, 0, 0.669377, -0.655737, -0.0682302, -4.59174)
+shape = SubResource("BoxShape3D_7lrcf")
+
+[connection signal="body_entered" from="Trigger - 01" to="Trigger - 01" method="_on_body_entered"]

@@ -2,12 +2,12 @@ extends Node
 
 var preference_path:String = "user://user_preferences.save" ##REMEMBER TO CHANGE TO USER / NOT RES
 var preferences:PlayerPreferences
+var player:Player
 
 
 func _ready()->void:
 	load_preferences()
-	preferences_to_json()
-
+	player = get_tree().get_nodes_in_group("Player")[0]
 
 func load_preferences()->void:
 	preferences = PlayerPreferences.new()

@@ -3,6 +3,11 @@ extends CharacterBody3D
 
 @export var walk_speed:float = 2.0
 @export var crouch_speed:float = 1.0
+@export var step_sound_time:float = 1 :
+	set(value):
+		step_sound_time = value;
+		if !timer: timer = $Timer
+		timer.wait_time = step_sound_time
 @export var standing_height:float = 1.75
 @export var crouch_height:float = 1.0
 @export var jump_height:float = 1.0
@@ -16,9 +21,14 @@ extends CharacterBody3D
 @onready var animation_player:AnimationPlayer = $Camera3D/AnimationPlayer
 @onready var on_position_node:Marker3D = $Camera3D/OnPosition
 @onready var off_position_node:Marker3D = $Camera3D/OffPosition
+@onready var timer:Timer = $Timer
 
+
+var can_move:bool = true
 var current_velocity:Vector3
 var is_crouched:bool = false : set=set_crouch
+
+signal snap_photo_signal
 
 func calculate_movement() -> Vector2:
 	var input:Vector2 = Input.get_vector("ctrl_left","ctrl_right","ctrl_up","ctrl_down")
@@ -47,9 +57,14 @@ func _ready() -> void:
 
 func _physics_process(delta:float) -> void:
 	var input:Vector2 = calculate_movement()
+
 	var tranformed_input:Vector3 = global_transform.basis * Vector3(input.x,0,input.y)
 	current_velocity = Vector3(tranformed_input.x,current_velocity.y,tranformed_input.z)
 	if is_on_floor():
+		if !input.is_zero_approx() and timer.is_stopped():
+			timer.start()
+		if input.is_zero_approx():
+			timer.stop()
 		if Input.is_action_just_pressed("ctrl_jump"):
 			current_velocity.y += _jump_speed
 	else:
@@ -76,3 +91,11 @@ func animate_camera() -> void:
 		t = animation_player.get_current_animation_position()
 	animation_player.call(play_direction,"Toggle Camera")
 	animation_player.seek(t)
+
+func snap_photo() ->void:
+	emit_signal("snap_photo_signal")
+
+
+func _on_timer_timeout() -> void:
+	AudioManager.play("Steps")
+	pass # Replace with function body.

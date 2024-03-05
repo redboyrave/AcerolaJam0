@@ -1,0 +1,13 @@
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://4u5113kqshtk"]
+
+[ext_resource type="Texture2D" uid="uid://dmqcsssotc22f" path="res://scenes/House/textures/House_tilling_sample_DefaultMaterial_Diffuse.png" id="1_lpa73"]
+[ext_resource type="Texture2D" uid="uid://5he0hjmlbaon" path="res://scenes/House/textures/House_tilling_sample_DefaultMaterial_Normal_GL.png" id="2_d65eo"]
+[ext_resource type="Texture2D" uid="uid://de57dwtjf3hwj" path="res://scenes/House/textures/tilling_sample_DefaultMaterial_ORM.png" id="3_5h25u"]
+
+[resource]
+cull_mode = 2
+albedo_color = Color(0.611765, 0.368627, 0.254902, 1)
+albedo_texture = ExtResource("1_lpa73")
+orm_texture = ExtResource("3_5h25u")
+normal_enabled = true
+normal_texture = ExtResource("2_d65eo")

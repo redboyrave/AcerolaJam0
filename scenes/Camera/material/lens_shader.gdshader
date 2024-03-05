@@ -14,7 +14,7 @@ void vertex() {
 void fragment() {
 	float depth = texture(_depth,SCREEN_UV,0.0).r;
 	vec3 ndc = vec3((SCREEN_UV*2.0) - 1.0,depth);
-	vec4 world = INV_VIEW_MATRIX * INV_PROJECTION_MATRIX * vec4(ndc,1.0);
+	vec4 world =  INV_PROJECTION_MATRIX * vec4(ndc,1.0);
 	float world_depth_z = -world.z / world.w;
 	float vertex_z = -(INV_VIEW_MATRIX * vec4(VERTEX,1.0)).z;
 	float horizontal_depth = vertex_z - world_depth_z;

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckkhxc4e2cpbw"]
+
+[ext_resource type="Script" path="res://scripts/managers/audio_queue.gd" id="1_5s0qa"]
+
+[node name="AudioQueue" type="Node"]
+script = ExtResource("1_5s0qa")
+volume = 1.0
+player_path = NodePath("AudioStreamPlayer")
+audio_bus = "Master"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

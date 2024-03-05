@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://gjyjxs6m6fcj"]
+
+[ext_resource type="ArrayMesh" uid="uid://dbu12ru4cyl42" path="res://scenes/Logs/meshes/stumps_tree_stump_002.res" id="1_qmoh4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ewp7u"]
+height = 1.98242
+radius = 1.00279
+
+[node name="LogStump2" type="MeshInstance3D"]
+mesh = ExtResource("1_qmoh4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_ewp7u")

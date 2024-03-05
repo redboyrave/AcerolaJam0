@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cspcd8nr634ms"]
+
+[ext_resource type="ArrayMesh" uid="uid://texf6mb20mci" path="res://scenes/House/meshes/House_Cube_009.res" id="1_pd80y"]
+
+[node name="Door" type="MeshInstance3D"]
+mesh = ExtResource("1_pd80y")

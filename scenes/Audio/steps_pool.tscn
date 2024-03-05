@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bysfwwricsukf"]
+
+[ext_resource type="Script" path="res://scripts/managers/audio_pool.gd" id="1_srqgh"]
+[ext_resource type="PackedScene" uid="uid://ckkhxc4e2cpbw" path="res://scenes/Audio/audio_queue.tscn" id="2_x07ji"]
+[ext_resource type="AudioStream" uid="uid://tfl2v8xn8l54" path="res://sounds/steps/steps_1.ogg" id="3_jiwa5"]
+[ext_resource type="AudioStream" uid="uid://cickavx45iyxf" path="res://sounds/steps/steps_2.ogg" id="4_ydhxi"]
+[ext_resource type="AudioStream" uid="uid://d3fu45rgddnmy" path="res://sounds/steps/steps_3.ogg" id="5_voqpf"]
+[ext_resource type="AudioStream" uid="uid://cy611e0ofbtir" path="res://sounds/steps/steps_4.ogg" id="6_pbyfb"]
+[ext_resource type="AudioStream" uid="uid://74yydyou7o2t" path="res://sounds/steps/steps_5.ogg" id="7_helhb"]
+
+[node name="AudioPool" type="Node"]
+script = ExtResource("1_srqgh")
+audio_volume = 35.0
+audio_bus = "SFX"
+
+[node name="AudioQueue" parent="." instance=ExtResource("2_x07ji")]
+volume = 35.0
+audio_players_ammount = 3
+audio_stream = ExtResource("3_jiwa5")
+audio_bus = "SFX"
+
+[node name="AudioQueue2" parent="." instance=ExtResource("2_x07ji")]
+volume = 35.0
+audio_players_ammount = 3
+audio_stream = ExtResource("4_ydhxi")
+audio_bus = "SFX"
+
+[node name="AudioQueue3" parent="." instance=ExtResource("2_x07ji")]
+volume = 35.0
+audio_players_ammount = 3
+audio_stream = ExtResource("5_voqpf")
+audio_bus = "SFX"
+
+[node name="AudioQueue4" parent="." instance=ExtResource("2_x07ji")]
+volume = 35.0
+audio_players_ammount = 3
+audio_stream = ExtResource("6_pbyfb")
+audio_bus = "SFX"
+
+[node name="AudioQueue5" parent="." instance=ExtResource("2_x07ji")]
+volume = 35.0
+audio_players_ammount = 3
+audio_stream = ExtResource("7_helhb")
+audio_bus = "SFX"

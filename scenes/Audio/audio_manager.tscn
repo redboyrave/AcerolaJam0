@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6kmfg02poui1"]
+
+[ext_resource type="Script" path="res://scripts/managers/audio_manager.gd" id="1_lgi2x"]
+[ext_resource type="PackedScene" uid="uid://bysfwwricsukf" path="res://scenes/Audio/steps_pool.tscn" id="2_7wmym"]
+[ext_resource type="PackedScene" uid="uid://ckkhxc4e2cpbw" path="res://scenes/Audio/audio_queue.tscn" id="3_helmi"]
+[ext_resource type="AudioStream" uid="uid://dyxk7l4qr50dy" path="res://sounds/wind_loop.ogg" id="4_x435a"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_lgi2x")
+
+[node name="Steps" parent="." instance=ExtResource("2_7wmym")]
+audio_volume = 55.0
+
+[node name="Wind" parent="." instance=ExtResource("3_helmi")]
+volume = 40.0
+audio_players_ammount = 1
+audio_stream = ExtResource("4_x435a")
+audio_bus = "SFX"

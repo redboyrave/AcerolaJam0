@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://dughsw1fj138g"]
+
+[ext_resource type="Texture2D" uid="uid://cqvumq1qbaoci" path="res://scenes/Logs/textures/diff_bake.png" id="1_3lnf4"]
+[ext_resource type="Texture2D" uid="uid://v2pon3ggya6i" path="res://scenes/Logs/textures/normal_combined_bake.png" id="2_q4rjp"]
+[ext_resource type="Texture2D" uid="uid://bg6f6glf8487h" path="res://scenes/Logs/textures/rough_bake.png" id="3_vtlsn"]
+
+[resource]
+albedo_texture = ExtResource("1_3lnf4")
+roughness_texture = ExtResource("3_vtlsn")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("2_q4rjp")
