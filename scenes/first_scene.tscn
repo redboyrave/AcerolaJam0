@@ -1,17 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://bp2cjpvxrkb3h"]
+[gd_scene load_steps=20 format=3 uid="uid://bp2cjpvxrkb3h"]
 
 [ext_resource type="PackedScene" uid="uid://cjkn0665csuey" path="res://scenes/player.tscn" id="1_dayly"]
 [ext_resource type="Material" uid="uid://cwyx6s430gawe" path="res://resources/Materials/Ground/path_dirt.tres" id="1_vc3yk"]
 [ext_resource type="PackedScene" uid="uid://dnsjnpl1lsjyd" path="res://scenes/Logs/log_stump_3.tscn" id="2_hnd2d"]
 [ext_resource type="Material" uid="uid://pg4tbtu0hhco" path="res://resources/Materials/Ground/forest_leaves_material.tres" id="2_wx5m7"]
 [ext_resource type="Script" path="res://scripts/events/trigger-01.gd" id="3_50jia"]
+[ext_resource type="PackedScene" uid="uid://bvlm3mb25ia5r" path="res://scenes/Rocks/rock_5.tscn" id="5_8x4r3"]
+[ext_resource type="PackedScene" uid="uid://doms0ymdj7gk4" path="res://scenes/Creature/creature.tscn" id="7_vs5de"]
+[ext_resource type="PackedScene" uid="uid://ckkhxc4e2cpbw" path="res://scenes/Audio/audio_queue.tscn" id="8_wnpkt"]
+[ext_resource type="AudioStream" uid="uid://c6r673lornpwt" path="res://sounds/sting.ogg" id="9_dfism"]
+[ext_resource type="PackedScene" uid="uid://cu6m80qqxbq03" path="res://scenes/House/house.tscn" id="10_g7ap7"]
+[ext_resource type="PackedScene" uid="uid://cspcd8nr634ms" path="res://scenes/House/door.tscn" id="11_56744"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u4sio"]
 sky_top_color = Color(0.117647, 0.0862745, 0.298039, 1)
-sky_horizon_color = Color(0.542157, 0.532353, 0.582353, 1)
+sky_horizon_color = Color(0.270588, 0.180392, 0.482353, 1)
 sky_energy_multiplier = 0.1
 ground_bottom_color = Color(0.0509804, 0.0431373, 0.0313726, 1)
-ground_horizon_color = Color(0.542157, 0.532353, 0.582353, 1)
+ground_horizon_color = Color(0.101961, 0.160784, 0.266667, 1)
 
 [sub_resource type="Sky" id="Sky_uciil"]
 sky_material = SubResource("ProceduralSkyMaterial_u4sio")
@@ -21,11 +27,103 @@ background_mode = 2
 sky = SubResource("Sky_uciil")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_energy = 0.43
+fog_sky_affect = 0.5
+adjustment_enabled = true
+adjustment_contrast = 1.43
+adjustment_saturation = 1.07
 
 [sub_resource type="BoxMesh" id="BoxMesh_7wta2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7lrcf"]
 size = Vector3(8.6416, 5.28418, 3.396)
+
+[sub_resource type="Animation" id="Animation_8kuxg"]
+resource_name = "Cutscene1"
+length = 0.75
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Creature:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-5.12983, -2.25669, -0.0050087), Vector3(5.65371, -2.25669, 1.00086)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Creature")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"CreatureAnimation/run_cycle"],
+"method": &"play"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioQueue")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Creature")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"show"
+}, {
+"args": [],
+"method": &"hide"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_5xe1x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Creature:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-5.07613, -1.04845, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dc2y2"]
+_data = {
+"Cutscene1": SubResource("Animation_8kuxg"),
+"RESET": SubResource("Animation_5xe1x")
+}
 
 [node name="Node3D" type="Node3D"]
 
@@ -38,13 +136,31 @@ light_energy = 0.1
 shadow_enabled = true
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(22.615, 0, 0, 0, 0.17343, 0, 0, 0, 7.07158, 0, -0.0681198, 0)
+transform = Transform3D(22.615, 0, 0, 0, 0.17343, 0, 0, 0, 7.07158, 0, 0.00470467, 0)
 material_override = ExtResource("1_vc3yk")
 use_collision = true
 mesh = SubResource("BoxMesh_7wta2")
 
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
 transform = Transform3D(16.4301, 0, -4.85924, 0, 0.17343, 0, 15.5399, 0, 5.13761, 15.5286, 0, 7.4407)
+material_override = ExtResource("2_wx5m7")
+use_collision = true
+mesh = SubResource("BoxMesh_7wta2")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(20.4981, 0, 2.98724, 0, 0.17343, 0, -9.5532, 0, 6.40965, 30.1674, 0, 12.7882)
+material_override = ExtResource("2_wx5m7")
+use_collision = true
+mesh = SubResource("BoxMesh_7wta2")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
+transform = Transform3D(10.9287, 0, 6.19104, 0, 0.17343, 0, -19.799, 0, 3.41735, 43.1359, 0, -0.811242)
+material_override = ExtResource("2_wx5m7")
+use_collision = true
+mesh = SubResource("BoxMesh_7wta2")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
+transform = Transform3D(21.4991, 0, -5.53286, 0, 0.17343, 0, 7.01619, 0, 16.9539, 42.6346, 0, -20.3322)
 material_override = ExtResource("2_wx5m7")
 use_collision = true
 mesh = SubResource("BoxMesh_7wta2")
@@ -56,14 +172,36 @@ step_sound_time = 0.5
 [node name="LogStump3" parent="." instance=ExtResource("2_hnd2d")]
 transform = Transform3D(0.137785, 0.635519, 0.513282, -0.656539, 0.300423, 1.0257e-08, -0.154202, -0.711239, 0.458637, 14.4175, 1.68568, 7.24409)
 
+[node name="Rock5" parent="." instance=ExtResource("5_8x4r3")]
+transform = Transform3D(1.38066, 0, 1.0401, 0, 1.72859, 0, -1.0401, 0, 1.38066, 17.2277, 0.411525, 3.77168)
+
 [node name="Trigger - 01" type="Area3D" parent="." groups=["Triggers"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1011, 2.3055, 13.8348)
+transform = Transform3D(0.637706, 0, 0.77028, 0, 1, 0, -0.77028, 0, 0.637706, 17.9746, 2.3055, 10.3422)
 collision_layer = 6
 collision_mask = 2
 script = ExtResource("3_50jia")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger - 01"]
-transform = Transform3D(0.669377, 0, 0.742923, 0, 1, 0, -0.742923, 0, 0.669377, -0.655737, -0.0682302, -4.59174)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_7lrcf")
+
+[node name="Creature" parent="Trigger - 01" instance=ExtResource("7_vs5de")]
+transform = Transform3D(0.0928746, 0, 0.995678, 0, 1, 0, -0.995678, 0, 0.0928746, -5.07613, -1.04845, 0)
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Trigger - 01"]
+libraries = {
+"": SubResource("AnimationLibrary_dc2y2")
+}
+
+[node name="AudioQueue" parent="Trigger - 01" instance=ExtResource("8_wnpkt")]
+volume = 50.0
+audio_stream = ExtResource("9_dfism")
+audio_bus = "SFX"
+
+[node name="House" parent="." instance=ExtResource("10_g7ap7")]
+transform = Transform3D(0.557767, 0, -1.79586, 0, 1.54102, 0, 1.79586, 0, 0.557767, 47.1705, 0.086715, -17.9371)
+
+[node name="Door" parent="House" instance=ExtResource("11_56744")]
 
 [connection signal="body_entered" from="Trigger - 01" to="Trigger - 01" method="_on_body_entered"]

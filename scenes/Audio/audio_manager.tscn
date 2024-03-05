@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6kmfg02poui1"]
+[gd_scene load_steps=6 format=3 uid="uid://c6kmfg02poui1"]
 
 [ext_resource type="Script" path="res://scripts/managers/audio_manager.gd" id="1_lgi2x"]
 [ext_resource type="PackedScene" uid="uid://bysfwwricsukf" path="res://scenes/Audio/steps_pool.tscn" id="2_7wmym"]
 [ext_resource type="PackedScene" uid="uid://ckkhxc4e2cpbw" path="res://scenes/Audio/audio_queue.tscn" id="3_helmi"]
 [ext_resource type="AudioStream" uid="uid://dyxk7l4qr50dy" path="res://sounds/wind_loop.ogg" id="4_x435a"]
+[ext_resource type="AudioStream" uid="uid://cagn2pgoe2bmh" path="res://sounds/wind_on_leaves.ogg" id="5_v3670"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_lgi2x")
@@ -12,7 +13,13 @@ script = ExtResource("1_lgi2x")
 audio_volume = 55.0
 
 [node name="Wind" parent="." instance=ExtResource("3_helmi")]
-volume = 40.0
+volume = 25.0
 audio_players_ammount = 1
 audio_stream = ExtResource("4_x435a")
+audio_bus = "SFX"
+
+[node name="Leaves" parent="." instance=ExtResource("3_helmi")]
+volume = 35.0
+audio_players_ammount = 1
+audio_stream = ExtResource("5_v3670")
 audio_bus = "SFX"

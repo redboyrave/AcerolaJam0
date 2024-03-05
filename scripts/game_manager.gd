@@ -7,7 +7,9 @@ var player:Player
 
 func _ready()->void:
 	load_preferences()
-	player = get_tree().get_nodes_in_group("Player")[0]
+	var player_group:Array[Node] = get_tree().get_nodes_in_group("Player")
+	if !player_group.is_empty():
+		player = player_group[0]
 
 func load_preferences()->void:
 	preferences = PlayerPreferences.new()

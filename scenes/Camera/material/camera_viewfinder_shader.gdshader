@@ -42,6 +42,7 @@ void fragment() {
 	vec4 albedo_tex = texture(texture_albedo,base_uv);
 	//ALBEDO = albedo_tex.rgb;
 	ALBEDO = pixelate(texture_albedo,UV,float(pixelation_ammount));
+	EMISSION = pixelate(texture_albedo,UV,float(pixelation_ammount))*.1;
 	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
 	METALLIC = metallic_tex * metallic;
 	vec4 roughness_texture_channel = vec4(0.333333,0.333333,0.333333,0.0);

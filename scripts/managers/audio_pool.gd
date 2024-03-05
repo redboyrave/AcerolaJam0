@@ -57,6 +57,10 @@ func play() -> void:
 	audio_queues[rand].play()
 	last_played_sound = rand
 
+func stop() -> void:
+	for audio in audio_queues:
+		audio.stop()
+
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warning:PackedStringArray = []

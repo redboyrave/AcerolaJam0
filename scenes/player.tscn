@@ -141,6 +141,7 @@ collision_mask = 5
 script = ExtResource("1_71keq")
 walk_speed = 3.5
 crouch_speed = 2.0
+arm_length = 2.0
 
 [node name="Capsule" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
@@ -160,16 +161,14 @@ surface_material_override/1 = SubResource("ShaderMaterial_2avhy")
 [node name="Camera3D" parent="Camera3D/Camera/SubViewport" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, 1.5, -0.104)
 
-[node name="OnPosition" type="Marker3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0134176, -0.289045)
-
-[node name="OffPosition" type="Marker3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.345962, -0.286554, -0.378326)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D"]
 libraries = {
 "": SubResource("AnimationLibrary_a38va")
 }
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 8
 
 [node name="Timer" type="Timer" parent="."]
 

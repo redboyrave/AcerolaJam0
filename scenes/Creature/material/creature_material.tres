@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://dhq0oqo77m1ve"]
+
+[ext_resource type="Texture2D" uid="uid://c0eiw85litvuc" path="res://scenes/Creature/textures/bear_run_anim_low_Bera_Diffuse.png" id="1_aqaj1"]
+[ext_resource type="Texture2D" uid="uid://ijhhv2a7juyw" path="res://scenes/Creature/textures/bear_run_anim_low_Bera_Normal_GL.png" id="2_2vk22"]
+[ext_resource type="Texture2D" uid="uid://c4etf28aduljq" path="res://scenes/Creature/textures/bear_run_anim_low_Bera_ORM.png" id="3_po4c8"]
+
+[resource]
+albedo_texture = ExtResource("1_aqaj1")
+orm_texture = ExtResource("3_po4c8")
+normal_enabled = true
+normal_texture = ExtResource("2_2vk22")

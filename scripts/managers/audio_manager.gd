@@ -4,6 +4,7 @@ extends Node
 
 func _ready() -> void:
 	$Wind.play()
+	$Leaves.play()
 
 
 func play(audio:StringName) -> void:

@@ -57,6 +57,9 @@ func play() -> void:
 	audio_player.play()
 	return
 
+func stop() -> void:
+	audio_player.stop()
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var warning:PackedStringArray = []
 	if !get_children()[0]:

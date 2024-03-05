@@ -1,3 +1,4 @@
+class_name HeroCamera
 extends Node3D
 
 @export_category("Camera FOV")
@@ -22,7 +23,6 @@ var off_texture:Texture
 func toggle_camera()->void:
 	is_camera_on = !is_camera_on;
 	#change_viewport(camera_texture if is_camera_on else off_texture)
-	snapshot()
 
 func _ready()->void:
 	camera_texture = subviewport.get_texture()
@@ -37,26 +37,35 @@ func change_viewport()->void:
 	var new_texture:Texture = camera_texture if is_camera_on else off_texture
 	viewfinder.get_surface_override_material(1).set_shader_parameter("texture_albedo",new_texture)
 
+func take_picture() -> void:
+	if !is_camera_on:
+		return
+	flash(true)
+	await snapshot()
+	flash(false)
+
 func on_fov_set(value:float) -> void:
 	camera_fov = value
 	$SubViewport/Camera3D.fov = camera_fov
 
+func flash(on:bool) -> void:
+	var tween:Tween = get_tree().create_tween()
+	var light_strength:float = 10 if on else 0
+	tween.tween_property(flash_light,"light_energy",light_strength,.05)
+
 func snapshot() -> void:
 	if !is_camera_on:
 		return
-	var dir:DirAccess = DirAccess.open("user://")
+	var dir:DirAccess = DirAccess.open(GameManager.preferences.save_location)
 	if !dir.dir_exists("./pictures"):
 		print("no picures folder")
 		dir.make_dir("./pictures")
 	else:
 		print("picture folder exists")
-	flash_light.light_energy = 10;
-	var timer:SceneTreeTimer = get_tree().create_timer(.1)
 	await RenderingServer.frame_post_draw
 	var img:Image = subviewport.get_texture().get_image()
 	var time:Dictionary = Time.get_datetime_dict_from_system()
 	var path:String = "user://pictures/%s-%s-%s-%s-%s-%s.png" %[time.year,time.month,time.day,time.hour,time.minute,time.second]
 	print (path)
-	await timer.timeout
-	flash_light.light_energy = 0
-	img.save_png(path)
+	if GameManager.preferences.save_picture:
+		img.save_png(path)

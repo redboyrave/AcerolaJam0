@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cspcd8nr634ms"]
+[gd_scene load_steps=4 format=3 uid="uid://cspcd8nr634ms"]
 
 [ext_resource type="ArrayMesh" uid="uid://texf6mb20mci" path="res://scenes/House/meshes/House_Cube_009.res" id="1_pd80y"]
+[ext_resource type="Script" path="res://scripts/door_script.gd" id="2_u4l07"]
 
-[node name="Door" type="MeshInstance3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_8v1e7"]
+size = Vector3(0.0615234, 1.50635, 0.669128)
+
+[node name="Door" type="AnimatableBody3D"]
+collision_layer = 9
+script = ExtResource("2_u4l07")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0163032, 0.753593, 0.320408)
+shape = SubResource("BoxShape3D_8v1e7")
+
+[node name="Door" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_pd80y")
