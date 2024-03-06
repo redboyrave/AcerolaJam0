@@ -159,6 +159,24 @@ material_override = ExtResource("2_wx5m7")
 use_collision = true
 mesh = SubResource("BoxMesh_7wta2")
 
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="."]
+transform = Transform3D(10.9287, 0, 6.19104, 0, 0.17343, 0, -19.799, 0, 3.41735, 41.9723, 9.53674e-07, -38.2202)
+material_override = ExtResource("2_wx5m7")
+use_collision = true
+mesh = SubResource("BoxMesh_7wta2")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="."]
+transform = Transform3D(-11.1956, 0, 6.14425, 0, 0.17343, 0, -19.6493, 0, -3.50079, 41.5922, 9.53674e-07, -54.2459)
+material_override = ExtResource("2_wx5m7")
+use_collision = true
+mesh = SubResource("BoxMesh_7wta2")
+
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="."]
+transform = Transform3D(6.46662, -0.0160262, 6.74473, 6.95424, 0.165027, 0, -20.5246, 0.0508658, 2.12505, 39.8887, 3.09358, -70.9848)
+material_override = ExtResource("2_wx5m7")
+use_collision = true
+mesh = SubResource("BoxMesh_7wta2")
+
 [node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
 transform = Transform3D(21.4991, 0, -5.53286, 0, 0.17343, 0, 7.01619, 0, 16.9539, 42.6346, 0, -20.3322)
 material_override = ExtResource("2_wx5m7")
@@ -182,7 +200,6 @@ collision_mask = 2
 script = ExtResource("3_50jia")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger - 01"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_7lrcf")
 
 [node name="Creature" parent="Trigger - 01" instance=ExtResource("7_vs5de")]

@@ -1,7 +1,7 @@
 [gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://r64rmconp1ep"]
 
-[ext_resource type="Texture2D" uid="uid://dmqcsssotc22f" path="res://scenes/House/textures/House_tilling_sample_DefaultMaterial_Diffuse.png" id="1_0qyjp"]
-[ext_resource type="Texture2D" uid="uid://5he0hjmlbaon" path="res://scenes/House/textures/House_tilling_sample_DefaultMaterial_Normal_GL.png" id="2_ppa7t"]
+[ext_resource type="Texture2D" uid="uid://qxe6pgsk5doa" path="res://scenes/House/textures/House_tilling_sample_DefaultMaterial_Diffuse.png" id="1_0qyjp"]
+[ext_resource type="Texture2D" uid="uid://c5ys1ui5eofer" path="res://scenes/House/textures/House_tilling_sample_DefaultMaterial_Normal_GL.png" id="2_ppa7t"]
 [ext_resource type="Texture2D" uid="uid://de57dwtjf3hwj" path="res://scenes/House/textures/tilling_sample_DefaultMaterial_ORM.png" id="3_o4ax0"]
 
 [resource]

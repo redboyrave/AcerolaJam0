@@ -4,15 +4,15 @@
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.
 
 shader_type spatial;
-render_mode blend_mix,depth_prepass_alpha,cull_disabled,diffuse_burley,specular_schlick_ggx;
+render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx;
 group_uniforms sway_paramenters;
 global uniform vec3 wind_direction = vec3(0);
 uniform sampler2D wind_noise;
 uniform float sway_intensity = 1.;
 group_uniforms Albedo;
 uniform vec4 albedo : source_color;
+uniform float alpha_scissor_threshold = 0.5;
 uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
-uniform float point_size : hint_range(0,128);
 group_uniforms Roughness;
 uniform float roughness : hint_range(0,1);
 uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
@@ -30,14 +30,9 @@ uniform vec3 uv1_offset;
 uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
-float random (vec2 uv) {
-    return fract(sin(dot(uv.xy,
-        vec2(12.9898,78.233))) * 43758.5453123);
-}
-
-
 void vertex() {
 	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	UV2 = UV2*uv2_scale.xy+uv2_offset.xy;
 	vec3 sway = texture(wind_noise,vec2(UV.x*(TIME-COLOR.g),UV.y*(TIME+COLOR.g)*.1)).rgb * sway_intensity * 0.1;
 	VERTEX += sway * COLOR.r + (wind_direction * COLOR.r);
 }
@@ -59,5 +54,6 @@ void fragment() {
 	ROUGHNESS = roughness_tex * roughness;
 	SPECULAR = specular;
 	NORMAL_MAP = texture(normal_map,base_uv).rgb * normal_intensity;
+	ALPHA_SCISSOR_THRESHOLD = alpha_scissor_threshold;
 }
 "

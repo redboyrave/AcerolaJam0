@@ -24,8 +24,11 @@ extends CharacterBody3D
 
 
 var can_move:bool = true
+var can_look:bool = true
 var current_velocity:Vector3
 var is_crouched:bool = false : set=set_crouch
+
+var inventory:PackedStringArray = []
 
 func calculate_movement() -> Vector2:
 	var input:Vector2 = Input.get_vector("ctrl_left","ctrl_right","ctrl_up","ctrl_down")

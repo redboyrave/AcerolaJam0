@@ -15,8 +15,9 @@ func _unhandled_input(event:InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func camera_look(direction:Vector2)->void:
-	rotate_body(direction.x)
-	rotate_view(direction.y)
+	if get_parent().can_look:
+		rotate_body(direction.x)
+		rotate_view(direction.y)
 
 func get_mouse_look(mouse:InputEventMouseMotion)->Vector2: #returns the scaled output of the mouse input
 	var rightleft:float = mouse.relative.x * (-1 if GameManager.preferences.mouse_invert_x else 1)
