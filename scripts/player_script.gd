@@ -17,6 +17,7 @@ extends CharacterBody3D
 
 @onready var _gravity:Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 @onready var _jump_speed:float = calculate_jump_speed(jump_height,jump_time)
+@onready var view_camera: Camera3D = $Camera3D
 @onready var camera_node:HeroCamera = $Camera3D/Camera
 @onready var animation_player:AnimationPlayer = $Camera3D/AnimationPlayer
 @onready var timer:Timer = $Timer
@@ -66,9 +67,8 @@ func _physics_process(delta:float) -> void:
 	var input:Vector2 = calculate_movement()
 
 	var tranformed_input:Vector3 = global_transform.basis * Vector3(input.x,0,input.y)
-	if can_move:
-		current_velocity = Vector3(tranformed_input.x,current_velocity.y,tranformed_input.z)
-	else:
+	current_velocity = Vector3(tranformed_input.x,current_velocity.y,tranformed_input.z)
+	if !can_move:
 		current_velocity = Vector3(0,current_velocity.y,0)
 	if is_on_floor():
 		current_velocity.y = 0
@@ -127,3 +127,6 @@ func take_picture() ->void:
 func _on_timer_timeout() -> void:
 	AudioManager.play("Steps")
 	pass # Replace with function body.
+
+
+

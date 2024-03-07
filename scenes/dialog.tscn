@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqxe3upmut87u"]
+[gd_scene load_steps=8 format=3 uid="uid://dqxe3upmut87u"]
 
 [ext_resource type="Script" path="res://scripts/dialogue_script.gd" id="1_rkfgu"]
+[ext_resource type="Texture2D" uid="uid://c2i6shjkdy6yx" path="res://resources/arrow.svg" id="2_22e1h"]
 
 [sub_resource type="Gradient" id="Gradient_lxnbn"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -8,6 +9,43 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cw1vl"]
 gradient = SubResource("Gradient_lxnbn")
 fill_from = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_tgu4e"]
+resource_name = "Arrow"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Control/Arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.450625, 1.7411, 0.450625),
+"update": 0,
+"values": [Vector2(-64, -64), Vector2(-64, -80), Vector2(-64, -64)]
+}
+
+[sub_resource type="Animation" id="Animation_0yqon"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Control/Arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-64, -64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j4ys2"]
+_data = {
+"Arrow": SubResource("Animation_tgu4e"),
+"RESET": SubResource("Animation_0yqon")
+}
 
 [node name="Dialog" type="Control"]
 process_mode = 3
@@ -45,5 +83,29 @@ theme_override_constants/margin_bottom = 128
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 26
 bbcode_enabled = true
 text = "A bear?"
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Arrow" type="TextureRect" parent="MarginContainer/Control"]
+layout_mode = 2
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -40.0
+offset_bottom = -40.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("2_22e1h")
+expand_mode = 3
+flip_v = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j4ys2")
+}

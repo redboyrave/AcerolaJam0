@@ -4,6 +4,14 @@ var preference_path:String = "user://user_preferences.save" ##REMEMBER TO CHANGE
 var preferences:PlayerPreferences
 var player:Player
 
+var paused:bool = false :
+	set(value):
+		paused = value
+		if !player :
+			print("no player")
+			return
+		player.can_move = !paused
+		player.can_look = !paused
 
 func _ready()->void:
 	load_preferences()
@@ -42,3 +50,9 @@ func preferences_to_json()->String:
 			dict[prop.name] = value
 	var json:String = JSON.stringify(dict)
 	return json
+
+func pause()->void:
+	paused = true
+
+func unpause()->void:
+	paused = false

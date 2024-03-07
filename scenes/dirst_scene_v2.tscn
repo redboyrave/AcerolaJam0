@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://clpipj21o06yo"]
+[gd_scene load_steps=36 format=3 uid="uid://clpipj21o06yo"]
 
 [ext_resource type="ArrayMesh" uid="uid://muni65xgbamt" path="res://scenes/Terrain/meshes/part1.res" id="3_84c11"]
 [ext_resource type="PackedScene" uid="uid://cjkn0665csuey" path="res://scenes/player.tscn" id="3_qj420"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://1gmbqghyfsjn" path="res://scenes/Trees/tree_02.tscn" id="17_3e33l"]
 [ext_resource type="PackedScene" uid="uid://b4i2x8abxwu6t" path="res://scenes/Trees/Tree_Bundle_01.tscn" id="19_8p38r"]
 [ext_resource type="PackedScene" uid="uid://bqh6bafejxacq" path="res://scenes/Trees/Tree_Bundle_02.tscn" id="20_dfshb"]
+[ext_resource type="PackedScene" uid="uid://dqxe3upmut87u" path="res://scenes/dialog.tscn" id="23_oxkff"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ofksa"]
 sky_top_color = Color(0.0313726, 0.0705882, 0.12549, 1)
@@ -60,7 +61,7 @@ size = Vector3(8.6416, 5.28418, 3.396)
 
 [sub_resource type="Animation" id="Animation_8kuxg"]
 resource_name = "Cutscene1"
-length = 0.75
+length = 0.8
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -69,10 +70,10 @@ tracks/0/path = NodePath("Creature:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.75),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-5.12983, -2.25669, -0.0050087), Vector3(5.65371, -2.25669, 1.00086)]
+"values": [Vector3(-6.62344, -2.4, -0.144304), Vector3(7.55855, -2.4, 1.17865)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -81,14 +82,11 @@ tracks/1/path = NodePath("Creature")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.75),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [&"CreatureAnimation/run_cycle"],
+"args": [&"CreatureAnimation/run_cycle", 2.0],
 "method": &"play"
-}, {
-"args": [],
-"method": &"queue_free"
 }]
 }
 tracks/2/type = "method"
@@ -112,7 +110,7 @@ tracks/3/path = NodePath("Creature")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.75),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -121,6 +119,31 @@ tracks/3/keys = {
 "args": [],
 "method": &"hide"
 }]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Dialog")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = false
+tracks/5/path = NodePath("../Player")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_5xe1x"]
@@ -411,6 +434,10 @@ volume = 50.0
 audio_stream = ExtResource("9_chhh8")
 audio_bus = "SFX"
 
+[node name="Dialog" parent="Trigger - 01" instance=ExtResource("23_oxkff")]
+visible = false
+dialogue = Array[String](["That was it!", "I have to follow it!"])
+
 [node name="House" parent="." instance=ExtResource("10_04uso")]
 transform = Transform3D(0.557767, 0, -1.79586, 0, 1.54102, 0, 1.79586, 0, 0.557767, 47.1705, -0.00324796, -17.9371)
 
@@ -442,4 +469,8 @@ spot_attenuation = 0.757858
 spot_angle = 71.6904
 spot_angle_attenuation = 1.8025
 
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.1294, 0, 3.90108)
+
 [connection signal="body_entered" from="Trigger - 01" to="Trigger - 01" method="_on_body_entered"]
+[connection signal="finished" from="Trigger - 01/Dialog" to="Trigger - 01" method="_on_dialog_finished"]

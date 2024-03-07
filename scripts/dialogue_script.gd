@@ -1,3 +1,4 @@
+@tool
 class_name Dialog
 extends Control
 
@@ -9,19 +10,27 @@ extends Control
 ##
 
 @onready var label: RichTextLabel = $MarginContainer/MarginContainer/RichTextLabel
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@export var dialog:PackedStringArray = []
 var current_index:int = 0
+@export var dialogue:Array[String] = []
 
+signal finished
 
 func start() -> void:
-	get_tree().paused = true
+	GameManager.pause()
+	show()
 	_display_dialog(0)
+	animation_player.play("Arrow")
+
 
 func _display_dialog(index:int)->void:
-	if index > dialog.size()-1 or index < 0:
+	if index < 0:
 		return
-	label.text = dialog[index]
+	if index > (dialogue.size()-1):
+		stop()
+		return
+	label.text = dialogue[index]
 	current_index = index
 
 
@@ -32,10 +41,12 @@ func previous() -> void:
 	_display_dialog(current_index-1)
 
 func stop() -> void:
-	if get_tree().paused:
-		get_tree().paused = false
+	hide()
+	if GameManager.paused:
+		GameManager.unpause()
+	finished.emit()
 	queue_free()
 
 func _input(event: InputEvent) -> void:
-	if event.is_pressed():
+	if GameManager.paused and event.is_action_pressed("ctrl_interact"):
 		next()
