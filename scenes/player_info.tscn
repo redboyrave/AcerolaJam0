@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://c402kyjc7wfle"]
+
+[ext_resource type="Texture2D" uid="uid://bq3thyg4awg57" path="res://resources/Hand.svg" id="1_y0s6w"]
+
+[sub_resource type="Gradient" id="Gradient_1wbd1"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.747368, 0.810526)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vyc4l"]
+gradient = SubResource("Gradient_1wbd1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="PlayerInfo" type="CanvasLayer"]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/Control"]
+modulate = Color(1, 1, 1, 0.498039)
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(32, 32)
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_vyc4l")
+
+[node name="TextureRect2" type="TextureRect" parent="CenterContainer/Control"]
+modulate = Color(1, 1, 1, 0.498039)
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -239.0
+offset_right = 326.0
+offset_bottom = 239.0
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(0, 239)
+mouse_filter = 2
+texture = ExtResource("1_y0s6w")
+
+[node name="Label" type="Label" parent="CenterContainer/Control"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = 21.0
+offset_right = 47.0
+offset_bottom = 44.0
+text = "Interact"
+horizontal_alignment = 1

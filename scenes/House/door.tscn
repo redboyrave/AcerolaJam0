@@ -17,4 +17,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0163032, 0.753593, 0.320408
 shape = SubResource("BoxShape3D_8v1e7")
 
 [node name="Door" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0, 0)
 mesh = ExtResource("1_pd80y")

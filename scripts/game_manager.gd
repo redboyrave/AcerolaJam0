@@ -1,8 +1,22 @@
 extends Node
 
-var preference_path:String = "user://user_preferences.save" ##REMEMBER TO CHANGE TO USER / NOT RES
-var preferences:PlayerPreferences
+
 var player:Player
+var camera:HeroCamera
+
+const DIALOG:PackedScene = preload("res://scenes/dialog.tscn")
+const PAUSE = preload("res://scenes/pause.tscn")
+
+var dialog_scene:Dialog
+
+var special_objects:Array[Variant]
+var photos_taken:Array[Image] = [] :
+	set(value):
+		photos_taken = value
+		while photos_taken.size() > 16:
+			photos_taken.pop_at(0)
+
+signal camera_state_change(is_on:bool)
 
 var paused:bool = false :
 	set(value):
@@ -13,46 +27,59 @@ var paused:bool = false :
 		player.can_move = !paused
 		player.can_look = !paused
 
+var p_screen_instance:CanvasLayer
+var tree_paused:bool = false:
+	set(value):
+		tree_paused = value
+
 func _ready()->void:
-	load_preferences()
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	var player_group:Array[Node] = get_tree().get_nodes_in_group("Player")
 	if !player_group.is_empty():
 		player = player_group[0]
+	special_objects = get_tree().get_nodes_in_group("PartialVisibility")
+	dialog_scene = DIALOG.instantiate()
+	add_child(dialog_scene)
+	dialog_scene.is_active = false
 
-func load_preferences()->void:
-	preferences = PlayerPreferences.new()
-	if !FileAccess.file_exists(preference_path):
-		print("creating new preference file")
-		save_preferences()
-	var file:FileAccess = FileAccess.open(preference_path,FileAccess.READ)
-	var dict:Dictionary = JSON.parse_string(file.get_as_text())
-	for i:String in dict:
-		if preferences.get(i):
-			preferences.set(i,dict[i])
-
-
-
-
-func save_preferences()->void:
-	var file:FileAccess = FileAccess.open(preference_path,FileAccess.WRITE_READ)
-	var pref_dict:String = preferences_to_json()
-	file.store_line(pref_dict)
-	file.close()
-
-
-func preferences_to_json()->String:
-	var dict:Dictionary = {}
-	var properties:Array = preferences.get_script().get_script_property_list()
-	print(properties)
-	for prop:Dictionary in properties:
-		var value:Variant = preferences.get(prop.name)
-		if value != null:
-			dict[prop.name] = value
-	var json:String = JSON.stringify(dict)
-	return json
 
 func pause()->void:
 	paused = true
 
 func unpause()->void:
 	paused = false
+
+func get_player()->Player:
+	var player_group:Array[Node] = get_tree().get_nodes_in_group("Player")
+	if !player_group.is_empty():
+		return player_group[0]
+	return null
+
+func get_camera()->HeroCamera:
+	if !player:
+		print("no player")
+		return null
+	return player.camera_node
+
+func dialog(text:Array[String])->void:
+	dialog_scene.dialogue = text
+	dialog_scene.start()
+	await dialog_scene.finished
+	unpause()
+	dialog_scene.dialogue = []
+
+func toggle_tree_paused() -> void:
+	get_tree().paused = !get_tree().paused
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ctrl_menu"):
+		toggle_tree_paused()
+		get_viewport().set_input_as_handled()
+		if get_tree().paused:
+			p_screen_instance =  PAUSE.instantiate()
+
+			get_tree().root.add_child(p_screen_instance)
+		else:
+			if is_instance_valid(p_screen_instance):
+				p_screen_instance.queue_free()
+

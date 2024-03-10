@@ -20,14 +20,18 @@ func camera_look(direction:Vector2)->void:
 		rotate_view(direction.y)
 
 func get_mouse_look(mouse:InputEventMouseMotion)->Vector2: #returns the scaled output of the mouse input
-	var rightleft:float = mouse.relative.x * (-1 if GameManager.preferences.mouse_invert_x else 1)
-	var updown:float = mouse.relative.y * (-1 if GameManager.preferences.mouse_invert_y else 1)
+	var rightleft:float = mouse.relative.x * (-1 if SaveManager.preferences.mouse_invert_x else 1)
+	var updown:float = mouse.relative.y * (-1 if SaveManager.preferences.mouse_invert_y else 1)
 
-	return Vector2(rightleft,updown) * GameManager.preferences.mouse_sensitivity
+	return Vector2(rightleft,updown) * SaveManager.preferences.mouse_sensitivity
 
 func get_joy_look()->Vector2:
-	return circularize_vector(Input.get_vector("ctrl_look_left","ctrl_look_right","ctrl_look_up","ctrl_look_down"))
-
+	var vector:Vector2 = circularize_vector(Input.get_vector("ctrl_look_right","ctrl_look_left","ctrl_look_down","ctrl_look_up"))
+	vector *= Vector2(
+		-1 if SaveManager.preferences.joy_invert_x else 1,
+		-1 if SaveManager.preferences.joy_invert_y else 1
+	)
+	return vector * SaveManager.preferences.joy_sensitivity * 5
 func circularize_vector(input_vector:Vector2) -> Vector2:
 	return Vector2(
 		input_vector.x * sqrt(1 - (input_vector.y * input_vector.y)/2),

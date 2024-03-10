@@ -16,7 +16,6 @@ extends CharacterBody3D
 @export var arm_length:float = 1.5 :set = set_arm_length
 
 @onready var _gravity:Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * ProjectSettings.get_setting("physics/3d/default_gravity_vector")
-@onready var _jump_speed:float = calculate_jump_speed(jump_height,jump_time)
 @onready var view_camera: Camera3D = $Camera3D
 @onready var camera_node:HeroCamera = $Camera3D/Camera
 @onready var animation_player:AnimationPlayer = $Camera3D/AnimationPlayer
@@ -29,7 +28,12 @@ var can_look:bool = true
 var current_velocity:Vector3
 var is_crouched:bool = false : set=set_crouch
 
-var inventory:PackedStringArray = []
+var inventory:Array[String] = []
+
+var left_trigger_active:bool = false
+var right_trigger_active:bool = false
+
+var arm_colliding_last_frame:bool = false
 
 func calculate_movement() -> Vector2:
 	var input:Vector2 = Input.get_vector("ctrl_left","ctrl_right","ctrl_up","ctrl_down")
@@ -63,9 +67,11 @@ func _ready() -> void:
 	animation_player.seek(0)
 	set_arm_length(arm_length)
 
+
 func _physics_process(delta:float) -> void:
 	var input:Vector2 = calculate_movement()
-
+	parse_triggers()
+	display_interactable()
 	var tranformed_input:Vector3 = global_transform.basis * Vector3(input.x,0,input.y)
 	current_velocity = Vector3(tranformed_input.x,current_velocity.y,tranformed_input.z)
 	if !can_move:
@@ -76,31 +82,53 @@ func _physics_process(delta:float) -> void:
 			timer.start()
 		if input.is_zero_approx():
 			timer.stop()
-		if Input.is_action_just_pressed("ctrl_jump"):
-			current_velocity.y += _jump_speed
 	else:
 		current_velocity += _gravity*delta
 	velocity = current_velocity
 	move_and_slide()
 
 
+func parse_triggers() -> void:
+	if Input.is_action_just_pressed("ctrl_joy_toggle_camera"):
+		Input.start_joy_vibration(0,.5,0,.25)
+		animate_camera()
+	if Input.is_action_just_pressed("ctrl_joy_photograph"):
+		if !camera_node.is_camera_on: return
+		vibrate_controller(0)
+		take_picture()
+
+func display_interactable() -> void:
+	var is_colliding:bool = arm_raycast.is_colliding()
+	if arm_colliding_last_frame != is_colliding:
+		$PlayerInfo.visible = is_colliding
+		arm_colliding_last_frame = is_colliding
+
+func vibrate_controller(index:int) -> void:
+	Input.start_joy_vibration(index,1,.5,.1)
+	await get_tree().create_timer(.25).timeout
+	Input.start_joy_vibration(index,1,.5,.1)
+
+
+## Aparently unhandled can't deal with joystick axis, so here we are
 func _unhandled_input(event:InputEvent) -> void:
+		##---- can execute while paused ----##
+	if event.is_action_pressed("ctrl_photograph"):
+		get_viewport().set_input_as_handled()
+		take_picture()
+	if event.is_action_pressed("ctrl_toggle_camera"):
+		get_viewport().set_input_as_handled()
+		animate_camera()
+		##---- cannot execute while paused ----##
+	if GameManager.paused: return
 	if event.is_action_pressed("ctrl_crouch"):
 		get_viewport().set_input_as_handled()
 		crouch_toggle()
-	if event.is_action_pressed("ctrl_toggle_camera"):
-		camera_node.toggle_camera()
-		get_viewport().set_input_as_handled()
-		animate_camera()
-	if event.is_action_pressed("ctrl_photograph"):
-		take_picture()
 	if event.is_action_pressed("ctrl_interact"):
 		get_viewport().set_input_as_handled()
-		if camera_node.is_camera_on:
-			return
 		interact()
 
 func animate_camera() -> void:
+	camera_node.toggle_camera()
 	var play_direction:StringName = "play"
 	var t:float = 0
 	if !camera_node.is_camera_on:
@@ -112,9 +140,7 @@ func animate_camera() -> void:
 	animation_player.seek(t)
 
 func interact() -> void:
-	if !arm_raycast.is_colliding():
-		return
-
+	if !arm_raycast.is_colliding(): return
 	var collider:Node3D = arm_raycast.get_collider()
 	if collider.has_method("interact"):
 		print("interacting with %s" %collider.name)
@@ -127,6 +153,5 @@ func take_picture() ->void:
 func _on_timer_timeout() -> void:
 	AudioManager.play("Steps")
 	pass # Replace with function body.
-
 
 

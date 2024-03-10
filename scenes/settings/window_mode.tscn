@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://boeb6cnbd5j8d"]
+
+[ext_resource type="PackedScene" uid="uid://c8eggsyxub88u" path="res://scenes/settings/option.tscn" id="1_glj1g"]
+[ext_resource type="Script" path="res://scripts/settings/window_mode_script.gd" id="2_7a8js"]
+
+[node name="Option" instance=ExtResource("1_glj1g")]
+script = ExtResource("2_7a8js")

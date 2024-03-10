@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://2l7gcd3xxng8"]
+
+[ext_resource type="PackedScene" uid="uid://cjkn0665csuey" path="res://scenes/player.tscn" id="1_8g87r"]
+[ext_resource type="PackedScene" uid="uid://d3trvpxwr38ds" path="res://scenes/Trees/bush.tscn" id="2_b63ce"]
+[ext_resource type="PackedScene" uid="uid://cceg64sw20rpq" path="res://scenes/Trees/tree_01.tscn" id="3_1dyjn"]
+[ext_resource type="Script" path="res://scripts/special_object_script.gd" id="4_1d005"]
+[ext_resource type="PackedScene" uid="uid://1gmbqghyfsjn" path="res://scenes/Trees/tree_02.tscn" id="5_11fsj"]
+[ext_resource type="PackedScene" uid="uid://bqh6bafejxacq" path="res://scenes/Trees/Tree_Bundle_02.tscn" id="6_usnwp"]
+[ext_resource type="PackedScene" uid="uid://k1teo85jwaar" path="res://scenes/Rocks/rock_4.tscn" id="7_78q44"]
+[ext_resource type="PackedScene" uid="uid://c5ywtg0oj7n0h" path="res://scenes/Rocks/rock_2.tscn" id="8_3h2e4"]
+[ext_resource type="PackedScene" uid="uid://d4kbqewi5o2ts" path="res://scenes/Rocks/rock_1.tscn" id="9_81j22"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_emyal"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_bpq6o"]
+sky_material = SubResource("ProceduralSkyMaterial_emyal")
+
+[sub_resource type="Environment" id="Environment_14pty"]
+background_mode = 2
+sky = SubResource("Sky_bpq6o")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_p3nfc"]
+height = 8.89153
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_14pty")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.48481, 0.87462, 0, -0.87462, 0.48481, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(20, 1, 20)
+
+[node name="Player" parent="." instance=ExtResource("1_8g87r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Bush" parent="." instance=ExtResource("2_b63ce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.471924, 0.568377, -4.66663)
+layers = 32
+
+[node name="Tree_01" parent="." instance=ExtResource("3_1dyjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05884, 0.499939, -3.93652)
+layers = 0
+script = ExtResource("4_1d005")
+show_for_camera = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tree_01"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tree_01/StaticBody3D"]
+shape = SubResource("CylinderShape3D_p3nfc")
+
+[node name="Tree_02" parent="." instance=ExtResource("5_11fsj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.47961, 0.5, 0.933594)
+layers = 0
+script = ExtResource("4_1d005")
+show_for_camera = true
+
+[node name="TreeBundle_02" parent="." instance=ExtResource("6_usnwp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57202, -0.504333, 6.80627)
+script = ExtResource("4_1d005")
+show_for_player = true
+
+[node name="Rock4" parent="." instance=ExtResource("7_78q44")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.67517, 0.499939, -3.35449)
+script = ExtResource("4_1d005")
+show_for_player = true
+
+[node name="Rock2" parent="." instance=ExtResource("8_3h2e4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.70349, 0.5, 1.18457)
+script = ExtResource("4_1d005")
+show_for_camera = true
+
+[node name="Rock1" parent="." instance=ExtResource("9_81j22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2132, 0.500061, -6.66089)
+script = ExtResource("4_1d005")
+show_for_camera = true

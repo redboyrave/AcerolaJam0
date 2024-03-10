@@ -1,0 +1,307 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3r8ngnww7mf"]
+
+[ext_resource type="Script" path="res://scripts/pause_screen_script.gd" id="1_r7522"]
+[ext_resource type="PackedScene" uid="uid://ig2jpvbm6pc" path="res://scenes/pause/PictureIcon.tscn" id="2_nbpk3"]
+[ext_resource type="PackedScene" uid="uid://bevcxqmincwxp" path="res://scenes/pause/SelectedPicture.tscn" id="3_puw15"]
+
+[sub_resource type="Animation" id="Animation_bdlqs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackFade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BigPicture:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 324)]
+}
+
+[sub_resource type="Animation" id="Animation_kmedd"]
+resource_name = "toggle_picture"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackFade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.439216)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BigPicture:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, 1250), Vector2(576, 324)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgpv3"]
+_data = {
+"RESET": SubResource("Animation_bdlqs"),
+"toggle_picture": SubResource("Animation_kmedd")
+}
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_r7522")
+grid_container_path = NodePath("MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer")
+black_fade_path = NodePath("BlackFade")
+big_picture_path = NodePath("BigPicture")
+animation_player_path = NodePath("AnimationPlayer")
+continue_button_path = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Continue")
+settings_button_path = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Options")
+exit_button_path = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Exit")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.14902)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+
+[node name="Continue" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+alignment = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Continue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/Continue/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "Resume"
+
+[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+alignment = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/Options/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "Options"
+
+[node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+alignment = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Exit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/Exit/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "Exit"
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 28
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Recent Pictures"
+horizontal_alignment = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 4
+
+[node name="Icon" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon2" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon3" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon4" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon5" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon6" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon7" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon8" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon9" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon10" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon11" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon12" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon13" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon14" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon15" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Icon16" parent="MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer" instance=ExtResource("2_nbpk3")]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="BlackFade" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="BigPicture" parent="." instance=ExtResource("3_puw15")]
+visible = false
+offset_left = 576.0
+offset_top = 324.0
+offset_right = 576.0
+offset_bottom = 324.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hgpv3")
+}
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_button_down"]

@@ -1855,8 +1855,7 @@ _subresources={
 },
 "nodes": {
 "PATH:rig/Skeleton3D": {
-"retarget/bone_map": Object(BoneMap,"resource_local_to_scene":false,"resource_name":"","profile":null,"bonemap":null,"script":null)
-,
+"retarget/bone_map": Resource("res://scenes/Creature/creature_bonemap.tres"),
 "retarget/bone_renamer/unique_node/skeleton_name": "Creature",
 "retarget/rest_fixer/fix_silhouette/enable": true
 }

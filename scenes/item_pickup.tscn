@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn8io8n04yjrj"]
+
+[ext_resource type="Script" path="res://scripts/item_pickup_script.gd" id="1_satvw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ttki4"]
+size = Vector3(4.5, 0.154597, 2)
+
+[node name="ItemPickup" type="StaticBody3D"]
+collision_layer = 8
+script = ExtResource("1_satvw")
+item = "DefaultItem"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ttki4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+skeleton = NodePath("")
+
+[node name="SpotLight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.82533, -7.97879e-08)
+layers = 32

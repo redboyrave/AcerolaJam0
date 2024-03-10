@@ -1,6 +1,12 @@
 extends Node
 
 
+@export var audio_volume:float = 100:
+	set(value):
+		audio_volume = value
+		AudioServer.set_bus_volume_db(0,linear_to_db(audio_volume / 100))
+
+
 
 func _ready() -> void:
 	$Wind.play()

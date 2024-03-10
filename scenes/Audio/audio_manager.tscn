@@ -19,7 +19,7 @@ audio_stream = ExtResource("4_x435a")
 audio_bus = "SFX"
 
 [node name="Leaves" parent="." instance=ExtResource("3_helmi")]
-volume = 35.0
+volume = 0.0
 audio_players_ammount = 1
 audio_stream = ExtResource("5_v3670")
 audio_bus = "SFX"

@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjkn0665csuey"]
+[gd_scene load_steps=13 format=3 uid="uid://cjkn0665csuey"]
 
 [ext_resource type="Script" path="res://scripts/player_script.gd" id="1_71keq"]
-[ext_resource type="Script" path="res://scenes/player_camera_script.gd" id="2_nrtl6"]
+[ext_resource type="Script" path="res://scripts/player_camera_script.gd" id="2_eg2to"]
 [ext_resource type="PackedScene" uid="uid://cdn38g745brbk" path="res://scenes/camera_scene.tscn" id="3_46rb1"]
 [ext_resource type="Shader" path="res://scenes/Camera/material/camera_viewfinder_shader.gdshader" id="4_ywlcp"]
 [ext_resource type="Texture2D" uid="uid://c288e2svk4dbe" path="res://scenes/Camera/textures/blurr.png" id="5_uk46l"]
+[ext_resource type="PackedScene" uid="uid://c402kyjc7wfle" path="res://scenes/player_info.tscn" id="6_7wdm0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_orelo"]
 radius = 0.35
@@ -15,7 +16,7 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_ywlcp")
 shader_parameter/pixelation_ammount = 1
-shader_parameter/point_size = 1.0
+shader_parameter/emission_strength = 1.0
 shader_parameter/min_rough = 0.25
 shader_parameter/max_rough = 0.35
 shader_parameter/texture_roughness = ExtResource("5_uk46l")
@@ -27,100 +28,45 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
-[sub_resource type="Animation" id="Animation_kx0t3"]
-length = 0.001
-tracks/0/type = "bezier"
+[sub_resource type="Animation" id="Animation_y5nry"]
+resource_name = "Pickup"
+length = 0.55
+step = 0.05
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:position:x")
+tracks/0/path = NodePath("Camera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.55),
+"transitions": PackedFloat32Array(0.5, 0.5, 2, 1),
+"update": 0,
+"values": [Vector3(-0.035, -0.132, -0.03), Vector3(-0.045, -0.041, -0.03), Vector3(-0.035, -0.01, -0.03), Vector3(-0.035, -0.02, -0.03)]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:position:y")
+tracks/1/path = NodePath("Camera:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.0134176, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera:position:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-0.289045, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/path = NodePath("Camera")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"change_viewport"
-}]
+"times": PackedFloat32Array(0.3, 0.45, 0.55),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Vector3(-0.261799, 0, 0), Vector3(-0.0663225, 0, 0.167552), Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_tjeek"]
-resource_name = "Toggle Camera"
+[sub_resource type="Animation" id="Animation_kx0t3"]
 length = 0.5
 step = 0.05
-tracks/0/type = "bezier"
+tracks/0/type = "method"
 tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:position:x")
+tracks/0/enabled = false
+tracks/0/path = NodePath("Camera")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-0.345962, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-0.286554, -0.25, 0, 0.25, 0, 0.0134176, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera:position:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-0.378326, -0.25, 0, 0.1, 0, -0.44297, -0.1, 0, 0.1, 0, -0.289045, -0.05, 0.0340441, 0.25, 0),
-"times": PackedFloat32Array(0, 0.15, 0.4)
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Camera")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -128,9 +74,119 @@ tracks/3/keys = {
 "method": &"change_viewport"
 }]
 }
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.035, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.02, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera:position:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.03, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.035, -0.02, -0.03)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tjeek"]
+resource_name = "Toggle Camera"
+length = 0.5
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_viewport"
+}]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.035, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.02, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera:position:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.03, -0.25, 0, 0.15, -0.00833078, -0.018, -0.2, -0.0153172, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a38va"]
 _data = {
+"Pickup": SubResource("Animation_y5nry"),
 "RESET": SubResource("Animation_kx0t3"),
 "Toggle Camera": SubResource("Animation_tjeek")
 }
@@ -148,12 +204,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
 shape = SubResource("CapsuleShape3D_orelo")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0404129, 1.61826, -0.431609)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0428666, 1.49249, -0.0977548)
+cull_mask = 1048031
 current = true
-script = ExtResource("2_nrtl6")
+near = 0.001
+script = ExtResource("2_eg2to")
 
 [node name="Camera" parent="Camera3D" instance=ExtResource("3_46rb1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0134176, -0.289045)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.035, -0.02, -0.03)
 
 [node name="Viewfinder" parent="Camera3D/Camera" index="4"]
 surface_material_override/1 = SubResource("ShaderMaterial_2avhy")
@@ -167,10 +225,13 @@ libraries = {
 }
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -1)
+target_position = Vector3(0, 0, -2)
 collision_mask = 8
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="PlayerInfo" parent="." instance=ExtResource("6_7wdm0")]
+visible = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 

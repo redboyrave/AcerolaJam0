@@ -8,7 +8,7 @@ uniform int pixelation_ammount:hint_range(1,10) = 1;
 
 group_uniforms Albedo;
 uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
-uniform float point_size : hint_range(0,128);
+uniform float emission_strength = 1;
 group_uniforms Roughness;
 uniform float min_rough:hint_range(0,1) = 0;
 uniform float max_rough:hint_range(0,1) = 1;
@@ -42,7 +42,7 @@ void fragment() {
 	vec4 albedo_tex = texture(texture_albedo,base_uv);
 	//ALBEDO = albedo_tex.rgb;
 	ALBEDO = pixelate(texture_albedo,UV,float(pixelation_ammount));
-	EMISSION = pixelate(texture_albedo,UV,float(pixelation_ammount))*.1;
+	EMISSION = pixelate(texture_albedo,UV,float(pixelation_ammount))*emission_strength;
 	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
 	METALLIC = metallic_tex * metallic;
 	vec4 roughness_texture_channel = vec4(0.333333,0.333333,0.333333,0.0);

@@ -2,13 +2,15 @@
 class_name Door
 extends AnimatableBody3D
 
+##is_locked works for opening the door
 @export var is_locked:bool = false :
 	set(value):
-		print("notify list change")
 		is_locked = value
 		notify_property_list_changed()
-var is_open:bool = false
 var key_to_open:String = ""
+
+##is_open works for animation
+var is_open:bool = false
 
 @onready var initial_rotation:float = rotation.y;
 
@@ -32,17 +34,20 @@ func _get_property_list() -> Array[Dictionary]:
 
 	return property
 
-func interact(_origin:Node3D)->void:
-	if is_locked: print(key_to_open)
+func interact(origin:Node3D)->void:
 	if is_locked:
-		if !_origin is Player:
+		if !origin is Player: return
+		var p:Player = origin as Player
+		if !(p.inventory.has(key_to_open)):
+			GameManager.dialog(["It's locked. The key must be around here somewhere."])
 			return
-		var p:Player = _origin as Player
-		if !p.inventory.has(key_to_open):
-			return
+		##IF IT GETS HERE, THE PLAYER HAS THE KEY
+		GameManager.dialog(["The key opened the door!"])
+		is_locked = false
 	var tween:Tween = get_tree().create_tween()
 	var desired_rotation:float = initial_rotation if is_open else initial_rotation - deg_to_rad(100)
 	is_open = !is_open
+
 	tween.tween_property(self,"rotation:y", desired_rotation,.5)
 	tween.set_ease(Tween.EASE_IN)
 	tween.play()

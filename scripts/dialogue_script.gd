@@ -17,14 +17,23 @@ var current_index:int = 0
 
 signal finished
 
+var is_active:bool :
+	set(value):
+		is_active = value
+		visible = is_active
+
 func start() -> void:
 	GameManager.pause()
-	show()
+	is_active = true
 	_display_dialog(0)
 	animation_player.play("Arrow")
 
+func stop() -> void:
+	is_active = false
+	finished.emit()
 
 func _display_dialog(index:int)->void:
+	if !is_active: return
 	if index < 0:
 		return
 	if index > (dialogue.size()-1):
@@ -35,18 +44,15 @@ func _display_dialog(index:int)->void:
 
 
 func next() -> void:
+	if !is_active: return
 	_display_dialog(current_index+1)
 
 func previous() -> void:
+	if !is_active: return
 	_display_dialog(current_index-1)
-
-func stop() -> void:
-	hide()
-	if GameManager.paused:
-		GameManager.unpause()
-	finished.emit()
-	queue_free()
 
 func _input(event: InputEvent) -> void:
 	if GameManager.paused and event.is_action_pressed("ctrl_interact"):
+		if !visible:return
+		get_viewport().set_input_as_handled()
 		next()
