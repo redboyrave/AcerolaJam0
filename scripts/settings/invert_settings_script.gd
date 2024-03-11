@@ -12,21 +12,16 @@ func _ready() -> void:
 	controller_x.get_node("CheckButton").button_pressed = SaveManager.preferences.joy_invert_x
 	controller_y.get_node("CheckButton").button_pressed = SaveManager.preferences.joy_invert_y
 
-
 func _on_mouse_x_button_toggled(toggled_on: bool) -> void:
 	SaveManager.preferences.mouse_invert_x = toggled_on
-	pass # Replace with function body.
 
 func _on_mouse_y_button_toggled(toggled_on: bool) -> void:
 	SaveManager.preferences.mouse_invert_y = toggled_on
-	pass # Replace with function body.
 
 func _on_joy_x_button_toggled(toggled_on: bool) -> void:
 	SaveManager.preferences.joy_invert_x = toggled_on
-	pass # Replace with function body.
 
 func _on_joy_y_button_toggled(toggled_on: bool) -> void:
 	SaveManager.preferences.joy_invert_x = toggled_on
-	pass # Replace with function body.
 
 

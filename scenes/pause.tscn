@@ -67,15 +67,15 @@ _data = {
 
 [node name="Pause" type="CanvasLayer"]
 process_mode = 3
-layer = 100
+layer = 10
 script = ExtResource("1_r7522")
 grid_container_path = NodePath("MarginContainer/HBoxContainer/Panel/MarginContainer/VBoxContainer2/GridContainer")
 black_fade_path = NodePath("BlackFade")
 big_picture_path = NodePath("BigPicture")
 animation_player_path = NodePath("AnimationPlayer")
-continue_button_path = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Continue")
-settings_button_path = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Options")
-exit_button_path = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Exit")
+continue_button_path = NodePath("MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Continue")
+settings_button_path = NodePath("MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Options")
+exit_button_path = NodePath("MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Exit")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -101,18 +101,30 @@ layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 32
+alignment = 2
 
-[node name="Continue" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Container" type="Container" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Continue" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 alignment = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Continue"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Continue"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,19 +137,25 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/Continue/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Continue/MarginContainer"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 20
-text = "Resume"
+bbcode_enabled = true
+text = "[center]Resume[/center]"
+fit_content = true
+scroll_active = false
 
-[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 alignment = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Options"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Options"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -150,19 +168,23 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/Options/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Options/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 20
-text = "Options"
+bbcode_enabled = true
+text = "[center]Options[/center]"
+fit_content = true
+scroll_active = false
 
-[node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 alignment = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/Exit"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Exit"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,11 +197,19 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/Exit/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Exit/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 20
-text = "Exit"
+bbcode_enabled = true
+text = "[center]Exit[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Container2" type="Container" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -292,16 +322,16 @@ color = Color(0, 0, 0, 0)
 
 [node name="BigPicture" parent="." instance=ExtResource("3_puw15")]
 visible = false
-offset_left = 576.0
-offset_top = 324.0
-offset_right = 576.0
-offset_bottom = 324.0
+offset_left = -64.0
+offset_top = -36.0
+offset_right = -64.0
+offset_bottom = -36.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_hgpv3")
 }
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="button_down" from="MarginContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_button_down"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="button_down" from="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_button_down"]

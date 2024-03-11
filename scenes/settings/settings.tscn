@@ -1,16 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://bitlhynokru4p"]
+[gd_scene load_steps=13 format=3 uid="uid://bitlhynokru4p"]
 
 [ext_resource type="Script" path="res://scripts/settings/settings_script.gd" id="1_4t5rt"]
 [ext_resource type="PackedScene" uid="uid://c8eggsyxub88u" path="res://scenes/settings/option.tscn" id="1_8yvpv"]
 [ext_resource type="Script" path="res://scripts/settings/sensitivity_script.gd" id="1_bkset"]
 [ext_resource type="Script" path="res://scripts/settings/window_mode_script.gd" id="2_lj38d"]
-[ext_resource type="Script" path="res://scripts/window_size_script.gd" id="3_jawa1"]
 [ext_resource type="Script" path="res://scripts/settings/invert_settings_script.gd" id="3_w63kj"]
 [ext_resource type="Script" path="res://scripts/settings/v_sync_script.gd" id="4_ov8qm"]
 [ext_resource type="Script" path="res://scripts/settings/save_images_script.gd" id="4_r70vu"]
 [ext_resource type="Script" path="res://scripts/settings/save_location_script.gd" id="5_5wph1"]
+[ext_resource type="PackedScene" uid="uid://bfutyb3sso3te" path="res://scripts/settings/window_size.tscn" id="8_n8ypp"]
+[ext_resource type="Script" path="res://scripts/settings/volume_script.gd" id="10_2n2uu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scil1"]
+bg_color = Color(0.239216, 0.239216, 0.239216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76d7f"]
+bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Settings" type="CanvasLayer"]
+layer = 20
 script = ExtResource("1_4t5rt")
 
 [node name="Panel" type="Panel" parent="."]
@@ -25,6 +37,7 @@ offset_right = 300.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_scil1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -39,7 +52,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Gameplay" type="MarginContainer" parent="Panel/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 16
@@ -335,11 +347,9 @@ script = ExtResource("2_lj38d")
 text = "Window Mode"
 options = Array[String](["Full Screen", "Window Mode", "Borderless Full Screen", "Borderless Window Mode"])
 
-[node name="WindowSize" parent="Panel/VBoxContainer/TabContainer/Display/Vbox" instance=ExtResource("1_8yvpv")]
+[node name="WindowSize" parent="Panel/VBoxContainer/TabContainer/Display/Vbox" instance=ExtResource("8_n8ypp")]
 layout_mode = 2
-script = ExtResource("3_jawa1")
-text = "Window Size"
-options = Array[String](["1152 x 648", "1280 x 720", "1920 x 1080"])
+alignment = 1
 
 [node name="V-sync" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Display/Vbox"]
 layout_mode = 2
@@ -362,6 +372,7 @@ layout_mode = 2
 size_flags_horizontal = 2
 
 [node name="Sound" type="MarginContainer" parent="Panel/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 16
@@ -379,6 +390,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 1
+script = ExtResource("10_2n2uu")
+sound_channel = "Master"
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Master Volume"]
 layout_mode = 2
@@ -399,7 +412,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-max_value = 120.0
 step = 0.05
 allow_greater = true
 
@@ -425,6 +437,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 1
+script = ExtResource("10_2n2uu")
+sound_channel = "Music"
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Music"]
 layout_mode = 2
@@ -445,7 +459,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-max_value = 120.0
 step = 0.05
 allow_greater = true
 
@@ -471,6 +484,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 1
+script = ExtResource("10_2n2uu")
+sound_channel = "SFX"
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/SFX"]
 layout_mode = 2
@@ -491,7 +506,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-max_value = 120.0
 step = 0.05
 allow_greater = true
 
@@ -512,41 +526,42 @@ shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
 
-[node name="Voic" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox"]
+[node name="Voice" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 1
+script = ExtResource("10_2n2uu")
+sound_channel = "Voice"
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voic"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voice"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Voice Volume"
 horizontal_alignment = 1
 
-[node name="VSeparator" type="Control" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voic"]
+[node name="VSeparator" type="Control" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voice"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voic"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voice"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSlider" type="HSlider" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voic/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voice/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-max_value = 120.0
 step = 0.05
 allow_greater = true
 
-[node name="VSeparator2" type="Control" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voic/HBoxContainer"]
+[node name="VSeparator2" type="Control" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voice/HBoxContainer"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voic/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voice/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -557,6 +572,19 @@ context_menu_enabled = false
 shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
+
+[node name="Close" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_bottom = 31.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_76d7f")
+text = "X"
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="tab_changed" from="Panel/VBoxContainer/TabContainer" to="." method="_on_tab_container_tab_changed"]
@@ -573,3 +601,12 @@ drag_and_drop_selection_enabled = false
 [connection signal="pressed" from="Panel/VBoxContainer/TabContainer/Gameplay/Vbox/Save Location/Button" to="Panel/VBoxContainer/TabContainer/Gameplay/Vbox/Save Location" method="_on_button_pressed"]
 [connection signal="dir_selected" from="Panel/VBoxContainer/TabContainer/Gameplay/Vbox/Save Location/FileDialog" to="Panel/VBoxContainer/TabContainer/Gameplay/Vbox/Save Location" method="_on_file_dialog_dir_selected"]
 [connection signal="toggled" from="Panel/VBoxContainer/TabContainer/Display/Vbox/V-sync/CheckButton" to="Panel/VBoxContainer/TabContainer/Display/Vbox/V-sync" method="_on_check_button_toggled"]
+[connection signal="value_changed" from="Panel/VBoxContainer/TabContainer/Sound/Vbox/Master Volume/HBoxContainer/HSlider" to="Panel/VBoxContainer/TabContainer/Sound/Vbox/Master Volume" method="_on_h_slider_value_changed"]
+[connection signal="text_submitted" from="Panel/VBoxContainer/TabContainer/Sound/Vbox/Master Volume/HBoxContainer/LineEdit" to="Panel/VBoxContainer/TabContainer/Sound/Vbox/Master Volume" method="_on_line_edit_text_submitted"]
+[connection signal="value_changed" from="Panel/VBoxContainer/TabContainer/Sound/Vbox/Music/HBoxContainer/HSlider" to="Panel/VBoxContainer/TabContainer/Sound/Vbox/Music" method="_on_h_slider_value_changed"]
+[connection signal="text_submitted" from="Panel/VBoxContainer/TabContainer/Sound/Vbox/Music/HBoxContainer/LineEdit" to="Panel/VBoxContainer/TabContainer/Sound/Vbox/Music" method="_on_line_edit_text_submitted"]
+[connection signal="value_changed" from="Panel/VBoxContainer/TabContainer/Sound/Vbox/SFX/HBoxContainer/HSlider" to="Panel/VBoxContainer/TabContainer/Sound/Vbox/SFX" method="_on_h_slider_value_changed"]
+[connection signal="text_submitted" from="Panel/VBoxContainer/TabContainer/Sound/Vbox/SFX/HBoxContainer/LineEdit" to="Panel/VBoxContainer/TabContainer/Sound/Vbox/SFX" method="_on_line_edit_text_submitted"]
+[connection signal="value_changed" from="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voice/HBoxContainer/HSlider" to="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voice" method="_on_h_slider_value_changed"]
+[connection signal="text_submitted" from="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voice/HBoxContainer/LineEdit" to="Panel/VBoxContainer/TabContainer/Sound/Vbox/Voice" method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="Panel/Close" to="." method="_on_button_pressed"]

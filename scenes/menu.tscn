@@ -1,0 +1,442 @@
+[gd_scene load_steps=34 format=3 uid="uid://dlkisvghcsofh"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_nijnr"]
+[ext_resource type="ArrayMesh" uid="uid://muni65xgbamt" path="res://scenes/Terrain/meshes/part1.res" id="1_xqh21"]
+[ext_resource type="PackedScene" uid="uid://cdn38g745brbk" path="res://scenes/camera_scene.tscn" id="2_ywogj"]
+[ext_resource type="PackedScene" uid="uid://dkfyug5hskftc" path="res://scenes/Logs/log_stump_1.tscn" id="3_0g7xa"]
+[ext_resource type="Shader" path="res://scenes/Camera/material/camera_viewfinder_shader.gdshader" id="3_t0ysi"]
+[ext_resource type="PackedScene" uid="uid://dnsjnpl1lsjyd" path="res://scenes/Logs/log_stump_3.tscn" id="4_617ef"]
+[ext_resource type="Texture2D" uid="uid://c288e2svk4dbe" path="res://scenes/Camera/textures/blurr.png" id="4_bweb1"]
+[ext_resource type="PackedScene" uid="uid://cmndq4j7rrat4" path="res://scenes/strange_particle.tscn" id="5_1deja"]
+[ext_resource type="PackedScene" uid="uid://ca4im21cw2j3e" path="res://scenes/Rocks/rock_patch.tscn" id="5_08kva"]
+[ext_resource type="PackedScene" uid="uid://byjyn61b7p0c6" path="res://scenes/Rocks/rock_7.tscn" id="6_kn06f"]
+[ext_resource type="PackedScene" uid="uid://bvlm3mb25ia5r" path="res://scenes/Rocks/rock_5.tscn" id="7_giy02"]
+[ext_resource type="PackedScene" uid="uid://bqh6bafejxacq" path="res://scenes/Trees/Tree_Bundle_02.tscn" id="8_o0w4b"]
+[ext_resource type="PackedScene" uid="uid://b4i2x8abxwu6t" path="res://scenes/Trees/Tree_Bundle_01.tscn" id="9_twcbj"]
+[ext_resource type="PackedScene" uid="uid://cceg64sw20rpq" path="res://scenes/Trees/tree_01.tscn" id="10_pqmo0"]
+[ext_resource type="PackedScene" uid="uid://b4xk5qbwvkoy0" path="res://scenes/Trees/tree_03.tscn" id="11_a7rv4"]
+[ext_resource type="ArrayOccluder3D" uid="uid://sftjs8arssf5" path="res://scenes/menu_occluder.occ" id="15_hq04t"]
+
+[sub_resource type="Curve" id="Curve_1bvaa"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tvxtv"]
+curve = SubResource("Curve_1bvaa")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ofksa"]
+sky_top_color = Color(0.0313726, 0.0705882, 0.12549, 1)
+sky_horizon_color = Color(0.0235294, 0.117647, 0.196078, 1)
+ground_bottom_color = Color(0.0705882, 0.054902, 0.0352941, 1)
+ground_horizon_color = Color(0.0941176, 0.207843, 0.34902, 1)
+ground_curve = 0.0118922
+ground_energy_multiplier = 0.25
+sun_angle_max = 0.0
+sun_curve = 4.17864
+
+[sub_resource type="Sky" id="Sky_qonx0"]
+sky_material = SubResource("ProceduralSkyMaterial_ofksa")
+
+[sub_resource type="Environment" id="Environment_c8vsj"]
+background_mode = 2
+sky = SubResource("Sky_qonx0")
+tonemap_mode = 3
+tonemap_exposure = 0.73
+tonemap_white = 0.83
+ssao_enabled = true
+glow_enabled = true
+glow_bloom = 0.06
+fog_enabled = true
+fog_light_color = Color(0.219608, 0.235294, 0.360784, 1)
+fog_light_energy = 0.25
+fog_sun_scatter = 0.65
+adjustment_enabled = true
+adjustment_brightness = 1.18
+adjustment_contrast = 0.94
+adjustment_saturation = 1.25
+adjustment_color_correction = SubResource("CurveTexture_tvxtv")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_swb6k"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 12.0
+dof_blur_far_transition = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbg4j"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_t0ysi")
+shader_parameter/pixelation_ammount = 1
+shader_parameter/emission_strength = 0.75
+shader_parameter/min_rough = 0.25
+shader_parameter/max_rough = 0.35
+shader_parameter/texture_roughness = ExtResource("4_bweb1")
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1guqm"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+border_width_bottom = 2
+border_color = Color(0.333333, 0.333333, 0.333333, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0exgj"]
+bg_color = Color(0.380392, 0.380392, 0.380392, 1)
+border_width_bottom = 2
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_034tj"]
+bg_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+border_width_top = 2
+border_color = Color(0.403922, 0.403922, 0.403922, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wegpp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 2
+border_width_right = 3
+border_width_bottom = 2
+border_color = Color(0.521569, 0.521569, 0.521569, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4kmw"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+border_width_bottom = 2
+border_color = Color(0.333333, 0.333333, 0.333333, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5l0s"]
+bg_color = Color(0.380392, 0.380392, 0.380392, 1)
+border_width_bottom = 2
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njkw5"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+border_width_bottom = 2
+border_color = Color(0.333333, 0.333333, 0.333333, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_677jn"]
+bg_color = Color(0.380392, 0.380392, 0.380392, 1)
+border_width_bottom = 2
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjb40"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+border_width_bottom = 2
+border_color = Color(0.333333, 0.333333, 0.333333, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ls5k"]
+bg_color = Color(0.380392, 0.380392, 0.380392, 1)
+border_width_bottom = 2
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_nijnr")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 0
+
+[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/Node3D"]
+environment = SubResource("Environment_c8vsj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.48481, 0.87462, 0, -0.87462, 0.48481, 0, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.07711, 3.8147e-06, -34.0947)
+mesh = ExtResource("1_xqh21")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(0.906963, 0, 0.42121, 0, 1, 0, -0.42121, 0, 0.906963, -1.04596, 0.295944, 10.4817)
+attributes = SubResource("CameraAttributesPractical_swb6k")
+current = true
+fov = 55.0
+
+[node name="Camera" parent="SubViewportContainer/SubViewport/Node3D" instance=ExtResource("2_ywogj")]
+transform = Transform3D(-0.836764, 0, 0.547563, 0, 1, 0, -0.547563, 0, -0.836764, -1.0884, 0.0348713, 9.19858)
+
+[node name="Body" parent="SubViewportContainer/SubViewport/Node3D/Camera" index="0"]
+cast_shadow = 1
+
+[node name="Flash" parent="SubViewportContainer/SubViewport/Node3D/Camera" index="1"]
+cast_shadow = 1
+
+[node name="Knob" parent="SubViewportContainer/SubViewport/Node3D/Camera" index="2"]
+cast_shadow = 1
+
+[node name="Lens" parent="SubViewportContainer/SubViewport/Node3D/Camera" index="3"]
+cast_shadow = 1
+
+[node name="Viewfinder" parent="SubViewportContainer/SubViewport/Node3D/Camera" index="4"]
+cast_shadow = 1
+surface_material_override/1 = SubResource("ShaderMaterial_bbg4j")
+
+[node name="StrangeParticle" parent="SubViewportContainer/SubViewport/Node3D" instance=ExtResource("5_1deja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06783, 0.849269, 3.20344)
+
+[node name="StrangeParticle2" parent="SubViewportContainer/SubViewport/Node3D" instance=ExtResource("5_1deja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.60793, 0.849269, 6.70573)
+
+[node name="decoration" type="Node3D" parent="SubViewportContainer/SubViewport/Node3D"]
+
+[node name="LogStump1" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("3_0g7xa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5958, 0, -1.7464)
+skeleton = NodePath("../../../../..")
+
+[node name="LogStump3" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("4_617ef")]
+transform = Transform3D(-2.63724e-08, -0.651105, 0.45792, 0.60333, -2.84607e-08, 2.00163e-08, 1.77636e-15, 0.758987, 0.392831, -9.0749, -9.53674e-07, 7.05104)
+skeleton = NodePath("../../../../..")
+
+[node name="LogStump4" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("4_617ef")]
+transform = Transform3D(-2.63724e-08, -0.975173, -0.133605, 0.60333, -4.26261e-08, -5.84007e-09, 2.60568e-15, -0.221446, 0.588351, -3.61533, -0.116035, -0.635571)
+skeleton = NodePath("../../../../..")
+
+[node name="Rock Patch" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("5_08kva")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -3.17341, -0.234023, 5.64662)
+
+[node name="Rock7" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("6_kn06f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.61418, 0, 8.97427)
+
+[node name="Rock5" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("7_giy02")]
+transform = Transform3D(2.18539, 0, 0, 0, 2.18539, 0, 0, 0, 2.18539, -14.9796, 0, 0.633375)
+
+[node name="TreeBundle_02" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("8_o0w4b")]
+transform = Transform3D(1.53648, 0, 0, 0, 1.53648, 0, 0, 0, 1.53648, 7.61234, 2.57232, -5.23096)
+
+[node name="TreeBundle_03" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("8_o0w4b")]
+transform = Transform3D(-0.386288, 0, -1.48713, 0, 1.53648, 0, 1.48713, 0, -0.386288, -4.53196, 1.61233, -10.2007)
+
+[node name="TreeBundle_04" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("8_o0w4b")]
+transform = Transform3D(-1.37289, 0, 0.689892, 0, 1.53648, 0, -0.689892, 0, -1.37289, 2.26001, 2.78555, -6.91795)
+
+[node name="TreeBundle_01" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("9_twcbj")]
+transform = Transform3D(1.47823, 0, 0, 0, 1.47823, 0, 0, 0, 1.47823, -20.2409, 0, -5.92026)
+
+[node name="TreeBundle_05" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("9_twcbj")]
+transform = Transform3D(3.53324, 0, 0, 0, 3.53324, 0, 0, 0, 3.53324, -28.4819, 9.53674e-07, -29.3144)
+
+[node name="TreeBundle_06" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("9_twcbj")]
+transform = Transform3D(3.53324, 0, 0, 0, 3.53324, 0, 0, 0, 3.53324, -8.8001, 9.53674e-07, -31.621)
+
+[node name="TreeBundle_07" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("9_twcbj")]
+transform = Transform3D(-0.316972, 0, 3.519, 0, 3.53324, 0, -3.519, 0, -0.316972, -54.3527, 0, -18.0033)
+
+[node name="TreeBundle_08" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("9_twcbj")]
+transform = Transform3D(-0.316972, 0, 3.519, 0, 3.53324, 0, -3.519, 0, -0.316972, -65.2318, 9.53674e-07, -4.07173)
+
+[node name="Tree_01" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("10_pqmo0")]
+transform = Transform3D(1.90963, 0, 0, 0, 1.84071, 0, 0, 0, 1.90963, -4.13864, 9.53674e-07, 10.7512)
+skeleton = NodePath("../../../../..")
+
+[node name="Tree_02" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("10_pqmo0")]
+transform = Transform3D(1.90963, 0, 0, 0, 1.84071, 0, 0, 0, 1.90963, 3.30087, 1.08667, 0.994246)
+skeleton = NodePath("../../../../..")
+
+[node name="Tree_03" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("10_pqmo0")]
+transform = Transform3D(-0.505282, 0, -1.84157, 0, 1.84071, 0, 1.84157, 0, -0.505282, -0.402915, -0.142168, 0.741846)
+skeleton = NodePath("../../../../..")
+
+[node name="Tree_04" parent="SubViewportContainer/SubViewport/Node3D/decoration" instance=ExtResource("11_a7rv4")]
+transform = Transform3D(4.5807, 0, 0, 0, 4.5807, 0, 0, 0, 4.5807, -22.6676, 0, 4.11722)
+skeleton = NodePath("../../../../..")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="SubViewportContainer/SubViewport/Node3D"]
+occluder = ExtResource("15_hq04t")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.172479, 0.985013, 0, -0.985013, 0.172479, -0.942336, 1.74892, 9.52368)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Settings")
+focus_next = NodePath("../Settings")
+focus_previous = NodePath("../Exit")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1guqm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0exgj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_034tj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wegpp")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Play")
+focus_neighbor_bottom = NodePath("../About")
+focus_next = NodePath("../About")
+focus_previous = NodePath("../Play")
+theme_override_styles/normal = SubResource("StyleBoxFlat_d4kmw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i5l0s")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_034tj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wegpp")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="About" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../Exit")
+focus_next = NodePath("../Exit")
+focus_previous = NodePath("../Settings")
+theme_override_styles/normal = SubResource("StyleBoxFlat_njkw5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_677jn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_034tj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wegpp")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/About"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "ABOUT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../About")
+focus_neighbor_bottom = NodePath("../Play")
+focus_next = NodePath("../Play")
+focus_previous = NodePath("../About")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cjb40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ls5k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_034tj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wegpp")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Exit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Container" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/About" to="." method="_on_about_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+
+[editable path="SubViewportContainer/SubViewport/Node3D/Camera"]

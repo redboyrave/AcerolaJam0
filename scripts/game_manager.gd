@@ -27,6 +27,8 @@ var paused:bool = false :
 		player.can_move = !paused
 		player.can_look = !paused
 
+var is_menu:bool = false
+
 var p_screen_instance:CanvasLayer
 var tree_paused:bool = false:
 	set(value):
@@ -72,12 +74,12 @@ func toggle_tree_paused() -> void:
 	get_tree().paused = !get_tree().paused
 
 func _unhandled_input(event: InputEvent) -> void:
+	if is_menu: return
 	if event.is_action_pressed("ctrl_menu"):
 		toggle_tree_paused()
 		get_viewport().set_input_as_handled()
 		if get_tree().paused:
 			p_screen_instance =  PAUSE.instantiate()
-
 			get_tree().root.add_child(p_screen_instance)
 		else:
 			if is_instance_valid(p_screen_instance):

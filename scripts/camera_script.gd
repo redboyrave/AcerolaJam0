@@ -16,7 +16,8 @@ extends Node3D
 @onready var camera:Camera3D = $SubViewport/Camera3D
 @onready var flash_light:SpotLight3D = $SpotLight3D
 
-var is_camera_on:bool = false;
+@export_group("Camera Status")
+@export var is_camera_on:bool = false;
 
 var camera_texture:Texture
 var off_texture:Texture
@@ -67,9 +68,9 @@ func snapshot()->void:
 	save_subviewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	await RenderingServer.frame_post_draw
 	var img:Image = save_subviewport.get_texture().get_image()
-	var time:Dictionary = Time.get_datetime_dict_from_system()
-	var path:String = "user://pictures/%s%s%s-%s%s%s.png" %[time.year,time.month,time.day,time.hour,time.minute,time.second]
 	GameManager.photos_taken.append(img);
 	if SaveManager.preferences.save_picture:
+		var time:Dictionary = Time.get_datetime_dict_from_system()
+		var path:String = "user://pictures/%s%s%s-%s%s%s.png" %[time.year,time.month,time.day,time.hour,time.minute,time.second]
 		img.save_png(path)
 

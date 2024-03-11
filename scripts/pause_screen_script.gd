@@ -22,6 +22,7 @@ const grid_columns:int = 4
 
 const PICTURE_ICON = preload("res://scenes/pause/PictureIcon.tscn")
 const QUIT_POPUP = preload("res://scenes/pause/quit_popup.tscn")
+const SETTINGS = preload("res://scenes/settings/settings.tscn")
 
 var is_picture_selected:bool = false :
 	set(value):
@@ -98,7 +99,8 @@ func _on_continue_pressed() -> void:
 
 
 func _on_options_pressed() -> void:
-	##TODO -> Implement settings screen
+	var instance = SETTINGS.instantiate()
+	self.add_child(instance)
 	pass # Replace with function body.
 
 

@@ -9,4 +9,3 @@ func _ready() -> void:
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	SaveManager.preferences.save_picture = toggled_on
 	save_location.visible = toggled_on
-	pass # Replace with function body.

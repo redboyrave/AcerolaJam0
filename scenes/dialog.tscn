@@ -16,7 +16,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/Control/Arrow:position")
+tracks/0/path = NodePath("Vbox/TextureRect/MarginContainer/Control/Arrow:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -31,7 +31,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/Control/Arrow:position")
+tracks/0/path = NodePath("Vbox/TextureRect/MarginContainer/Control/Arrow:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rkfgu")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Vbox" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,39 +66,56 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_top = 384
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+[node name="Container" type="Container" parent="Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="TextureRect" type="TextureRect" parent="Vbox"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = SubResource("GradientTexture2D_cw1vl")
 expand_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="Vbox/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 128
+theme_override_constants/margin_bottom = 64
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Vbox/TextureRect/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 26
 bbcode_enabled = true
-text = "A bear?"
+text = "--DEFAULT TEXT--"
 
-[node name="Control" type="Control" parent="MarginContainer"]
+[node name="Control" type="Control" parent="Vbox/TextureRect/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="Arrow" type="TextureRect" parent="MarginContainer/Control"]
-layout_mode = 2
+[node name="Arrow" type="TextureRect" parent="Vbox/TextureRect/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -64.0
 offset_top = -64.0
 offset_right = -40.0
 offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 texture = ExtResource("2_22e1h")

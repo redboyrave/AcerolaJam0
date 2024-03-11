@@ -19,10 +19,11 @@ func _ready() -> void:
 		mesh.set_layer_mask_value(1,false)
 	for mesh:MultiMeshInstance3D in multimeshes:
 		mesh.set_layer_mask_value(1,false)
-	GameManager.camera_state_change.connect(on_visibility_change)
 	set_camera_visible(show_for_camera)
 	set_player_visible(show_for_player)
 	on_visibility_change(false)
+	if Engine.is_editor_hint(): return
+	GameManager.camera_state_change.connect(on_visibility_change)
 
 func set_camera_visible(value:bool)->void:
 	show_for_camera = value

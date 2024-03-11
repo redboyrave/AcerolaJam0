@@ -4,12 +4,11 @@ extends Control
 
 ##USAGE
 ##Every time you want to say something,
-##You show a instance of this scene;
+##You call the GAME MANAGER who will feed an instance of this scene;
 ##Dialog in general is on an array,
 ##and will proceed in the array order
 ##
-
-@onready var label: RichTextLabel = $MarginContainer/MarginContainer/RichTextLabel
+@onready var label: RichTextLabel = $Vbox/TextureRect/MarginContainer/RichTextLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var current_index:int = 0
