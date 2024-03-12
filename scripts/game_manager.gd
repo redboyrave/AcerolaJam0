@@ -29,16 +29,14 @@ var paused:bool = false :
 
 var is_menu:bool = false
 
-var p_screen_instance:CanvasLayer
+var pause_screen_instance:CanvasLayer
 var tree_paused:bool = false:
 	set(value):
 		tree_paused = value
 
 func _ready()->void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	var player_group:Array[Node] = get_tree().get_nodes_in_group("Player")
-	if !player_group.is_empty():
-		player = player_group[0]
+	player = get_player()
 	special_objects = get_tree().get_nodes_in_group("PartialVisibility")
 	dialog_scene = DIALOG.instantiate()
 	add_child(dialog_scene)
@@ -63,11 +61,12 @@ func get_camera()->HeroCamera:
 		return null
 	return player.camera_node
 
-func dialog(text:Array[String])->void:
+func dialog(text:Array[String], continue_pause:bool = false)->void:
 	dialog_scene.dialogue = text
 	dialog_scene.start()
 	await dialog_scene.finished
-	unpause()
+	if !continue_pause:
+		unpause()
 	dialog_scene.dialogue = []
 
 func toggle_tree_paused() -> void:
@@ -79,9 +78,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		toggle_tree_paused()
 		get_viewport().set_input_as_handled()
 		if get_tree().paused:
-			p_screen_instance =  PAUSE.instantiate()
-			get_tree().root.add_child(p_screen_instance)
+			pause_screen_instance =  PAUSE.instantiate()
+			get_tree().root.add_child(pause_screen_instance)
+			free_mouse()
 		else:
-			if is_instance_valid(p_screen_instance):
-				p_screen_instance.queue_free()
+			if is_instance_valid(pause_screen_instance):
+				pause_screen_instance.queue_free()
+				capture_mouse()
 
+func capture_mouse()->void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func free_mouse()->void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

@@ -4,17 +4,24 @@ extends CanvasLayer
 @onready var settings: Button = $MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Settings
 @onready var about: Button = $MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/About
 @onready var exit: Button = $MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Exit
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const SETTINGS:PackedScene = preload("res://scenes/settings/settings.tscn")
 const QUIT_POPUP = preload("res://scenes/pause/quit_popup.tscn")
+const INITIAL_CUTSCENE = preload("res://scenes/InitialCutsceneGraphics.tscn")
 
 func _ready()->void:
 	play.grab_focus()
 	GameManager.is_menu = true
+	AudioManager.play_all()
+
 
 func _on_play_pressed() -> void:
-	pass # Replace with function body.
-
+	var instance:CanvasLayer = INITIAL_CUTSCENE.instantiate()
+	animation_player.play("fade_out")
+	await animation_player.animation_finished
+	get_tree().root.add_child(instance)
+	queue_free()
 
 func _on_settings_pressed() -> void:
 	var instance:CanvasLayer = SETTINGS.instantiate()

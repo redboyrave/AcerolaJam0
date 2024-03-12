@@ -12,6 +12,14 @@ func _ready() -> void:
 	$Wind.play()
 	$Leaves.play()
 
+func stop_all() -> void:
+	for child:Variant in get_children():
+		child.stop()
+
+func play_all() -> void:
+	for child:Variant in get_children():
+		if child is AudioPool: continue
+		child.play()
 
 func play(audio:StringName) -> void:
 	var i:int = -1

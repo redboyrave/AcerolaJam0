@@ -9,7 +9,7 @@ var width:int
 var height:int
 
 func _on_width_edit_text_changed(new_text: String) -> void:
-	var digits:String
+	var digits:String = get_digits_only(new_text)
 	for letter in new_text:
 		if letter.is_valid_int():
 			digits += letter
@@ -18,13 +18,16 @@ func _on_width_edit_text_changed(new_text: String) -> void:
 
 
 func _on_height_edit_text_changed(new_text: String) -> void:
-	var digits:String
-	for letter in new_text:
-		if letter.is_valid_int():
-			digits += letter
+	var digits:String = get_digits_only(new_text)
 	width_edit.text = digits
 	height = digits.to_int()
 
+func get_digits_only(text:String) ->String:
+	var digits:String = ""
+	for letter:String in text:
+		if letter.is_valid_int():
+			digits += letter
+	return digits
 
 func _on_button_pressed() -> void:
 	custom_size.emit(Vector2i(width,height))

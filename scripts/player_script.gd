@@ -28,6 +28,7 @@ var can_look:bool = true
 var current_velocity:Vector3
 var is_crouched:bool = false : set=set_crouch
 
+
 var inventory:Array[String] = []
 
 var left_trigger_active:bool = false
@@ -111,6 +112,7 @@ func vibrate_controller(index:int) -> void:
 
 ## Aparently unhandled can't deal with joystick axis, so here we are
 func _unhandled_input(event:InputEvent) -> void:
+	if GameManager.is_menu: return
 		##---- can execute while paused ----##
 	if event.is_action_pressed("ctrl_photograph"):
 		get_viewport().set_input_as_handled()

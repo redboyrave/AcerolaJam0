@@ -99,7 +99,7 @@ func _on_continue_pressed() -> void:
 
 
 func _on_options_pressed() -> void:
-	var instance = SETTINGS.instantiate()
+	var instance:CanvasLayer = SETTINGS.instantiate()
 	self.add_child(instance)
 	pass # Replace with function body.
 

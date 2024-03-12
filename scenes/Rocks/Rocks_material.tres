@@ -9,3 +9,5 @@ albedo_texture = ExtResource("1_o3pqu")
 orm_texture = ExtResource("3_0odv7")
 normal_enabled = true
 normal_texture = ExtResource("2_omjpc")
+proximity_fade_enabled = true
+proximity_fade_distance = 0.1

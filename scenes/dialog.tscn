@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/dialogue_script.gd" id="1_rkfgu"]
 [ext_resource type="Texture2D" uid="uid://c2i6shjkdy6yx" path="res://resources/arrow.svg" id="2_22e1h"]
+[ext_resource type="Animation" uid="uid://c3hxyyr5t21y3" path="res://resources/dilaog_arrow_animation.anim" id="3_g0x8g"]
 
 [sub_resource type="Gradient" id="Gradient_lxnbn"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -9,22 +10,6 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cw1vl"]
 gradient = SubResource("Gradient_lxnbn")
 fill_from = Vector2(1, 1)
-
-[sub_resource type="Animation" id="Animation_tgu4e"]
-resource_name = "Arrow"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Vbox/TextureRect/MarginContainer/Control/Arrow:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.450625, 1.7411, 0.450625),
-"update": 0,
-"values": [Vector2(-64, -64), Vector2(-64, -80), Vector2(-64, -64)]
-}
 
 [sub_resource type="Animation" id="Animation_0yqon"]
 length = 0.001
@@ -43,7 +28,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j4ys2"]
 _data = {
-"Arrow": SubResource("Animation_tgu4e"),
+"Arrow": ExtResource("3_g0x8g"),
 "RESET": SubResource("Animation_0yqon")
 }
 

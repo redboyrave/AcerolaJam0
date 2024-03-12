@@ -1,10 +1,15 @@
-[gd_scene load_steps=79 format=3 uid="uid://clpipj21o06yo"]
+[gd_scene load_steps=116 format=3 uid="uid://clpipj21o06yo"]
 
+[ext_resource type="Script" path="res://scripts/events/level_1_start_script.gd" id="1_4m2dw"]
 [ext_resource type="ArrayOccluder3D" uid="uid://0s0bq80eosjg" path="res://scenes/first_scene_occluer.occ" id="1_202np"]
+[ext_resource type="Script" path="res://scenes/level_load.gd" id="1_l61q3"]
 [ext_resource type="ArrayMesh" uid="uid://muni65xgbamt" path="res://scenes/Terrain/meshes/part1.res" id="2_wtqll"]
+[ext_resource type="PackedScene" uid="uid://bjlfn7h48c2b0" path="res://scenes/controls_screen.tscn" id="2_xkobe"]
 [ext_resource type="ArrayMesh" uid="uid://dcfgh3wdmp5hj" path="res://scenes/Terrain/meshes/part2.res" id="3_dteqb"]
 [ext_resource type="Material" uid="uid://c60cqfnrye026" path="res://resources/Materials/mossy_rock_material.tres" id="4_ayc0o"]
+[ext_resource type="Texture2D" uid="uid://cnhfkq2iykqn5" path="res://resources/messages/moon_1.png" id="5_53o5b"]
 [ext_resource type="ArrayMesh" uid="uid://d2mf30ouqsx53" path="res://scenes/Terrain/meshes/underlay.res" id="5_pnlbl"]
+[ext_resource type="Texture2D" uid="uid://cg5rvx1238gcc" path="res://resources/messages/moon_2.png" id="6_k2am8"]
 [ext_resource type="ArrayMesh" uid="uid://bgnps2ocuebp6" path="res://scenes/Trees/meshes/trees_Tree_003.res" id="6_qskla"]
 [ext_resource type="ArrayMesh" uid="uid://ju8r2qxanl3i" path="res://scenes/Trees/meshes/trees_Tree_002.res" id="7_3v5km"]
 [ext_resource type="PackedScene" uid="uid://d4kbqewi5o2ts" path="res://scenes/Rocks/rock_1.tscn" id="8_wb4pm"]
@@ -25,7 +30,9 @@
 [ext_resource type="Script" path="res://scripts/special_object_script.gd" id="23_piuvd"]
 [ext_resource type="Script" path="res://scripts/events/trigger-01.gd" id="24_loslr"]
 [ext_resource type="PackedScene" uid="uid://doms0ymdj7gk4" path="res://scenes/Creature/creature.tscn" id="25_fehl2"]
+[ext_resource type="Shader" path="res://scenes/Camera/material/camera_viewfinder_shader.gdshader" id="25_yv8xj"]
 [ext_resource type="PackedScene" uid="uid://ckkhxc4e2cpbw" path="res://scenes/Audio/audio_queue.tscn" id="26_dbviy"]
+[ext_resource type="Texture2D" uid="uid://c288e2svk4dbe" path="res://scenes/Camera/textures/blurr.png" id="26_hg17q"]
 [ext_resource type="AudioStream" uid="uid://c6r673lornpwt" path="res://sounds/sting.ogg" id="27_xw6h4"]
 [ext_resource type="Script" path="res://scripts/singles/Anim_dialog.gd" id="28_b2r3g"]
 [ext_resource type="PackedScene" uid="uid://cu6m80qqxbq03" path="res://scenes/House/house.tscn" id="29_dopgn"]
@@ -42,6 +49,291 @@
 [ext_resource type="PackedScene" uid="uid://df404l84b0mwx" path="res://scenes/secret_message.tscn" id="40_oke65"]
 [ext_resource type="Texture2D" uid="uid://c75k1o74tyum8" path="res://resources/messages/creature_message.png" id="41_j0oxx"]
 [ext_resource type="Texture2D" uid="uid://p4c2ioaob2md" path="res://resources/messages/question.png" id="42_y8sm1"]
+[ext_resource type="Script" path="res://scripts/events/trigger-03.gd" id="44_1jmtu"]
+[ext_resource type="Texture2D" uid="uid://4d3qs5ugvskv" path="res://resources/moon_png.png" id="47_8w8li"]
+[ext_resource type="Texture2D" uid="uid://obdtaobyn8hm" path="res://resources/messages/paw.png" id="47_c8a3i"]
+[ext_resource type="Texture2D" uid="uid://bivsjvkpyvog7" path="res://resources/messages/blockade.png" id="48_36nkh"]
+[ext_resource type="Texture2D" uid="uid://bunyxnf0vjdnc" path="res://resources/messages/house.png" id="50_v7pkw"]
+[ext_resource type="Texture2D" uid="uid://dbuohujubhx4g" path="res://resources/messages/go_back.png" id="52_0qlur"]
+[ext_resource type="Script" path="res://scripts/secret_message_script.gd" id="52_2okrx"]
+[ext_resource type="Texture2D" uid="uid://cobmg7md64u2w" path="res://resources/messages/lines.png" id="53_3hp55"]
+[ext_resource type="Texture2D" uid="uid://dhswvdkjmnwf4" path="res://resources/messages/angry.png" id="53_j1urx"]
+[ext_resource type="Texture2D" uid="uid://be6j5y55jkqhi" path="res://resources/messages/leave.png" id="54_bagv8"]
+[ext_resource type="Texture2D" uid="uid://2c0x7x6sjfsr" path="res://resources/messages/tree1.png" id="55_w2fa3"]
+[ext_resource type="Texture2D" uid="uid://caupnrbu8jriw" path="res://resources/messages/run.png" id="57_0pbwa"]
+[ext_resource type="Texture2D" uid="uid://dglshquy1y2an" path="res://resources/messages/shoe.png" id="59_20us7"]
+[ext_resource type="Texture2D" uid="uid://bxgwg5acmb51k" path="res://resources/messages/foot.png" id="60_kqfr5"]
+[ext_resource type="Texture2D" uid="uid://bbfpdqrs14hjf" path="res://resources/messages/tree3.png" id="61_sf73i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oddle"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 1.0
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0.819608, 0.811765, 0.847059, 1)
+albedo_texture = ExtResource("47_8w8li")
+emission_enabled = true
+emission_energy_multiplier = 1.69
+emission_texture = ExtResource("47_8w8li")
+uv1_scale = Vector3(0.761, 1, 1)
+uv1_offset = Vector3(0.091, 0, 0)
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_2udew"]
+material = SubResource("StandardMaterial3D_oddle")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3tuvy"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = ExtResource("54_bagv8")
+emission_enabled = true
+emission = Color(0.466466, 0.200766, 0.291109, 1)
+emission_texture = ExtResource("54_bagv8")
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_cfuhv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5a1h"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = ExtResource("5_53o5b")
+emission_enabled = true
+emission = Color(0.27451, 0.52549, 0.772549, 1)
+emission_energy_multiplier = 0.23
+emission_texture = ExtResource("5_53o5b")
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dstjr"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = ExtResource("6_k2am8")
+emission_enabled = true
+emission = Color(0.109804, 0.172549, 0.231373, 1)
+emission_texture = ExtResource("6_k2am8")
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+
+[sub_resource type="Animation" id="Animation_6h5q1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(44.4977, 0, -13.4867)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Player:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.490926, -1.91606, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Player/Camera3D/Camera:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.035, -0.132, -0.03)]
+}
+
+[sub_resource type="Animation" id="Animation_ftq2i"]
+resource_name = "part1"
+length = 1.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(-21.488, 5.29226, -6.44534), Vector3(-19.5341, 6.08867, -5.74188)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Player:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.174533, -1.91637, 0), Vector3(0, -1.91637, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Player/Camera3D/Camera:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector3(-0.035, -1, -0.03)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Player")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_physics_process"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Player/Camera3D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_physics_process"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_t04c7"]
+resource_name = "part2"
+length = 5.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Player:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.4, 1.5, 1.8, 2.5, 3.15, 3.2, 3.25, 3.5, 3.9, 5.1),
+"transitions": PackedFloat32Array(1, -2.84197, -1.51571, 0.389681, 1, 1, 0, 2, -2, 2, -2, 0.757858),
+"update": 0,
+"values": [Vector3(0, -1.91637, 0), Vector3(0, -1.91637, 0), Vector3(0.311332, -1.86184, -7.82685e-09), Vector3(0.311332, -1.86184, -7.82685e-09), Vector3(-1.52328, -1.80941, 3.13704e-07), Vector3(-3.14159, -1.80991, 0), Vector3(-7.14039, -1.80991, 0), Vector3(-1.52367, -1.80991, 0), Vector3(-1.53589, -1.80991, 0), Vector3(-1.52367, -1.80991, 0), Vector3(-1.52367, -1.80991, 0), Vector3(0, -1.80991, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.3, 2.6, 3.2, 4.3),
+"transitions": PackedFloat32Array(1, 1, 2, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-19.5341, 6.08867, -5.74188), Vector3(-17.518, 5.3025, -5.01603), Vector3(-16.6678, 5.3025, -4.45596), Vector3(-7.395, 1.495, 1.019), Vector3(-7.39455, -0.02285, 1.01933), Vector3(-7.39455, -0.02285, 1.01933)]
+}
+
+[sub_resource type="Animation" id="Animation_xhh57"]
+resource_name = "part3"
+length = 1.5
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Player/Camera3D/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("Pickup"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Player")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_physics_process"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Player/Camera3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"set_physics_process"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Controls")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fade_in"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pjdw6"]
+_data = {
+"RESET": SubResource("Animation_6h5q1"),
+"part1": SubResource("Animation_ftq2i"),
+"part2": SubResource("Animation_t04c7"),
+"part3": SubResource("Animation_xhh57")
+}
 
 [sub_resource type="Curve" id="Curve_1bvaa"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -70,7 +362,10 @@ tonemap_mode = 3
 tonemap_exposure = 0.73
 tonemap_white = 0.83
 glow_enabled = true
-glow_bloom = 0.06
+glow_intensity = 4.43
+glow_strength = 0.72
+glow_bloom = 0.11
+glow_blend_mode = 1
 fog_enabled = true
 fog_light_color = Color(0.219608, 0.235294, 0.360784, 1)
 fog_light_energy = 0.25
@@ -105,6 +400,23 @@ data = PackedVector3Array(-42.1934, -0.0820197, 37.9147, -40.223, -0.0820091, 29
 [sub_resource type="PlaneMesh" id="PlaneMesh_bb6ti"]
 size = Vector2(25, 15)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ikkc"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("25_yv8xj")
+shader_parameter/pixelation_ammount = 1
+shader_parameter/emission_strength = 1.0
+shader_parameter/min_rough = 0.25
+shader_parameter/max_rough = 0.35
+shader_parameter/texture_roughness = ExtResource("26_hg17q")
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7lrcf"]
 size = Vector3(8.6416, 5.28418, 4.87964)
 
@@ -122,7 +434,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-6.62344, -2.4, -0.144304), Vector3(7.55855, -2.4, 1.17865)]
+"values": [Vector3(-6.553, -2.4, -2.009), Vector3(7.559, -2.4, -1.556)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -339,10 +651,81 @@ _data = {
 "RESET": SubResource("Animation_5rnuu")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_mha0t"]
+size = Vector3(11.8716, 8.01831, 2.37817)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8gaf"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("48_36nkh")
+emission_enabled = true
+emission = Color(0.319634, 0.468181, 0.176704, 1)
+emission_texture = ExtResource("48_36nkh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5787s"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("48_36nkh")
+emission_enabled = true
+emission = Color(0.334977, 0.259816, 0.66759, 1)
+emission_texture = ExtResource("48_36nkh")
+
 [node name="Level" type="Node3D"]
+script = ExtResource("1_l61q3")
+
+[node name="Controls" parent="." instance=ExtResource("2_xkobe")]
+
+[node name="Moon" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 443.295, 1500, -116.196)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_2udew")
+
+[node name="Moon mesasge" type="Node3D" parent="Moon"]
+transform = Transform3D(0.117682, -5.24199e-16, -0.149167, 9.6897e-17, 0.19, -5.91248e-16, 0.149167, 2.90135e-16, 0.117682, 443.27, 1499.99, -116.187)
+top_level = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Moon/Moon mesasge"]
+transform = Transform3D(0.999999, 2.11758e-22, 0, -1.05879e-22, 1, -6.35275e-22, -5.96046e-08, -3.17637e-22, 1, -60.3473, -704.082, 221.648)
+layers = 512
+material_override = SubResource("StandardMaterial3D_3tuvy")
+cast_shadow = 0
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_cfuhv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Moon/Moon mesasge"]
+transform = Transform3D(2, 0, 0, -2.11758e-22, 2, -1.27055e-21, -1.19209e-07, -2.11758e-22, 2, 0.0180664, 0, -0.0783691)
+layers = 512
+material_override = SubResource("StandardMaterial3D_f5a1h")
+cast_shadow = 0
+extra_cull_margin = 1.0
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_cfuhv")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Moon/Moon mesasge"]
+transform = Transform3D(6.76473, 8.47033e-22, -2.38419e-07, -8.47033e-22, 6.76475, -1.82112e-20, -4.76837e-07, -2.11758e-21, 6.76473, 273.855, 0.0703125, 63.1406)
+layers = 512
+material_override = SubResource("StandardMaterial3D_dstjr")
+cast_shadow = 0
+extra_cull_margin = 1.0
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_cfuhv")
+
+[node name="LevelCustsceneStart" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.0075, 5.54595, -7.2416)
+gizmo_extents = 2.0
+script = ExtResource("1_4m2dw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelCustsceneStart"]
+libraries = {
+"": SubResource("AnimationLibrary_pjdw6")
+}
+autoplay = "part1"
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
-visible = false
 occluder = ExtResource("1_202np")
 bake_mask = 4294967199
 
@@ -626,8 +1009,14 @@ transform = Transform3D(-0.0408468, 0, -0.999165, 0, 1, 0, 0.999165, 0, -0.04084
 visibility_aabb = AABB(-1, -1, -3.10763, 2, 2, 6.21525)
 
 [node name="Player" parent="." instance=ExtResource("22_7tct8")]
-transform = Transform3D(0.676464, 0, -0.736475, 0, 1, 0, 0.736475, 0, 0.676464, 44.4977, 0, -13.4867)
+transform = Transform3D(-0.338444, -0.443621, -0.829852, 0, 0.881896, -0.471442, 0.940985, -0.159557, -0.298473, 44.4977, 0, -13.4867)
 step_sound_time = 0.5
+
+[node name="Camera3D" parent="Player" index="1"]
+transform = Transform3D(1, 7.45058e-09, 0, 0, 1, 6.14673e-08, 2.98023e-08, -2.23517e-08, 1, -0.0428667, 1.49249, -0.0977535)
+
+[node name="Viewfinder" parent="Player/Camera3D/Camera" index="4"]
+surface_material_override/1 = SubResource("ShaderMaterial_5ikkc")
 
 [node name="LogStump3" parent="." instance=ExtResource("14_vkvoe")]
 transform = Transform3D(0.137785, 0.635519, 0.513282, -0.656539, 0.300423, 1.0257e-08, -0.154202, -0.711239, 0.458637, 14.4175, 1.68568, 7.24409)
@@ -652,7 +1041,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90735e-06, 0, -0.741819)
 shape = SubResource("BoxShape3D_7lrcf")
 
 [node name="Creature" parent="Trigger - 01" instance=ExtResource("25_fehl2")]
-transform = Transform3D(0.0928746, 0, 0.995678, 0, 1, 0, -0.995678, 0, 0.0928746, -5.07613, -1.04845, 0)
+transform = Transform3D(0.185749, 0, 1.99136, 0, 2, 0, -1.99136, 0, 0.185749, -5.07613, -1.04845, 0)
 visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Trigger - 01"]
@@ -667,7 +1056,7 @@ audio_bus = "SFX"
 
 [node name="Dialog" type="Node" parent="Trigger - 01"]
 script = ExtResource("28_b2r3g")
-text = Array[String](["Was that it?", "But it was so small...", "I better follow it."])
+text = Array[String](["What was that?!", "I propably shouldn't go that way..."])
 
 [node name="House" parent="." instance=ExtResource("29_dopgn")]
 transform = Transform3D(0.557767, 0, -1.79586, 0, 1.54102, 0, 1.79586, 0, 0.557767, 47.1705, -0.00324796, -17.9371)
@@ -902,6 +1291,7 @@ mesh = ExtResource("35_tgh12")
 
 [node name="SpotLight" parent="ItemPickup" index="2"]
 transform = Transform3D(17.5328, 7.15256e-07, 3.55271e-14, 0, -7.66383e-07, 17.5328, 7.15256e-07, -17.5328, -7.66383e-07, 1.25, 4.4605, 0)
+layers = 512
 light_energy = 0.25
 light_indirect_energy = 0.0
 spot_range = 1.0
@@ -1144,6 +1534,93 @@ skeleton = NodePath("../..")
 transform = Transform3D(-0.161729, -0.732355, 0, 0.732355, -0.161729, 0, 0, 0, 0.75, 8.97555, -38.6163, -11.8982)
 skeleton = NodePath("../..")
 
+[node name="Bush23" parent="Decoration" instance=ExtResource("18_wgrgy")]
+transform = Transform3D(0.323459, 1.46471, 0, -1.46471, 0.323459, 0, 0, 0, 1.5, 9.84159, -42.538, -32.1564)
+skeleton = NodePath("../..")
+
+[node name="Bush24" parent="Decoration" instance=ExtResource("18_wgrgy")]
+transform = Transform3D(0.0194311, 1.46471, -0.322874, -0.0879894, 0.323459, 1.46206, 1.49729, 0, 0.0901094, 9.8297, -42.4842, -35.4497)
+skeleton = NodePath("../..")
+
+[node name="Bush25" parent="Decoration" instance=ExtResource("18_wgrgy")]
+transform = Transform3D(-0.291451, 1.46471, -0.140291, 1.31977, 0.323459, 0.635277, 0.650583, 0, -1.35157, 8.99508, -38.7048, -32.1046)
+skeleton = NodePath("../..")
+
+[node name="Bush26" parent="Decoration" instance=ExtResource("18_wgrgy")]
+transform = Transform3D(-0.185459, 1.46471, 0.26501, 0.839809, 0.323459, -1.20004, -1.22895, 0, -0.860043, 9.51751, -41.0704, -31.6386)
+skeleton = NodePath("../..")
+
+[node name="Bush27" parent="Decoration" instance=ExtResource("18_wgrgy")]
+transform = Transform3D(-0.185459, 1.46471, 0.26501, 0.839809, 0.323459, -1.20004, -1.22895, 0, -0.860043, 10.2897, -44.5671, -34.4122)
+skeleton = NodePath("../..")
+
+[node name="Bush28" parent="Decoration" instance=ExtResource("18_wgrgy")]
+transform = Transform3D(-0.212685, 1.46471, -0.243702, 0.963095, 0.323459, 1.10355, 1.13014, 0, -0.986299, 9.88149, -42.7186, -33.7175)
+skeleton = NodePath("../..")
+
+[node name="Bush29" parent="Decoration" instance=ExtResource("18_wgrgy")]
+transform = Transform3D(-0.212685, 1.46471, -0.243702, 0.963095, 0.323459, 1.10355, 1.13014, 0, -0.986299, 10.4473, -45.2806, -36.9818)
+skeleton = NodePath("../..")
+
+[node name="Bush30" parent="Decoration" instance=ExtResource("18_wgrgy")]
+transform = Transform3D(-0.212685, 1.46471, -0.243702, 0.963095, 0.323459, 1.10355, 1.13014, 0, -0.986299, 15.4387, -51.495, -42.477)
+skeleton = NodePath("../..")
+
+[node name="TreeBundle_01" parent="Decoration" instance=ExtResource("15_e0wil")]
+transform = Transform3D(-0.249793, 1.46471, 0.205497, 1.13113, 0.323459, -0.930545, -0.952965, 0, -1.15839, 9.59884, -19.4788, -27.4536)
+
+[node name="TreeBundle_09" parent="Decoration" instance=ExtResource("15_e0wil")]
+transform = Transform3D(-0.249793, 1.46471, 0.205497, 1.13113, 0.323459, -0.930545, -0.952965, 0, -1.15839, 9.05247, -23.7339, -38.0472)
+
+[node name="TreeBundle_10" parent="Decoration" instance=ExtResource("15_e0wil")]
+transform = Transform3D(-0.249793, 1.46471, 0.205497, 1.13113, 0.323459, -0.930545, -0.952965, 0, -1.15839, 7.42295, -25.9645, -26.178)
+
+[node name="TreeBundle_11" parent="Decoration" instance=ExtResource("15_e0wil")]
+transform = Transform3D(-0.249793, 1.46471, 0.205497, 1.13113, 0.323459, -0.930545, -0.952965, 0, -1.15839, 12.7664, -50.1613, -36.3418)
+
+[node name="TreeBundle_12" parent="Decoration" instance=ExtResource("16_tu1ux")]
+transform = Transform3D(0.431278, 1.95295, 0, -1.95295, 0.431278, 0, 0, 0, 2, 13.1383, -52.077, -47.7075)
+
+[node name="TreeBundle_13" parent="Decoration" instance=ExtResource("16_tu1ux")]
+transform = Transform3D(0.402124, 1.95295, -0.155877, -1.82093, 0.431278, 0.705852, 0.722859, 0, 1.8648, 7.99941, -27.9291, -47.4821)
+
+[node name="LogStump13" parent="Decoration" instance=ExtResource("14_vkvoe")]
+transform = Transform3D(0.126977, 0.0564074, 0.59573, -0.574987, -0.255429, 0.131558, 0.159587, -0.965181, -2.4766e-08, 7.53684, -32.1073, -36.7488)
+skeleton = NodePath("../..")
+
+[node name="LogStump14" parent="Decoration" instance=ExtResource("14_vkvoe")]
+transform = Transform3D(0.126977, 0.0413288, 0.59573, -0.574987, -0.187148, 0.131558, 0.159587, -0.707172, -2.4766e-08, 10.1175, -43.7933, -43.1279)
+skeleton = NodePath("../..")
+
+[node name="LogStump3" parent="Decoration" instance=ExtResource("13_atayv")]
+transform = Transform3D(0.215639, 0.976473, 0, -0.976473, 0.215639, 0, 0, 0, 1, 9.98017, -43.1655, -37.682)
+skeleton = NodePath("../..")
+
+[node name="LogStump15" parent="Decoration" instance=ExtResource("13_atayv")]
+transform = Transform3D(0.164163, 0.743376, 0, -0.743376, 0.164163, 0, 0, 0, 0.761287, 7.39222, -31.4466, -31.3814)
+skeleton = NodePath("../..")
+
+[node name="Rock Patch4" parent="Decoration" instance=ExtResource("37_t16y2")]
+transform = Transform3D(0.930903, 0.976473, -0.192865, -4.21538, 0.215639, 0.873348, 0.89439, 0, 4.31695, 8.9319, -38.6142, -42.122)
+
+[node name="Rock Patch5" parent="Decoration" instance=ExtResource("37_t16y2")]
+transform = Transform3D(0.930903, 0.976473, -0.192865, -4.21538, 0.215639, 0.873348, 0.89439, 0, 4.31695, 9.36007, -40.5531, -51.0476)
+
+[node name="Rock Patch6" parent="Decoration" instance=ExtResource("37_t16y2")]
+transform = Transform3D(-0.92564, 0.97719, 0.140486, 4.25929, 0.212366, -0.646438, -0.661527, 0, -4.35871, 8.77234, -37.8917, -33.2162)
+
+[node name="Tree_04" parent="Decoration" instance=ExtResource("20_cq76f")]
+transform = Transform3D(0.431278, 0.976473, 0, -1.95295, 0.215639, 0, 0, 0, 2, 10.8575, -45.9, -55.6161)
+skeleton = NodePath("../..")
+
+[node name="Tree_05" parent="Decoration" instance=ExtResource("20_cq76f")]
+transform = Transform3D(-0.201243, 0.976922, -0.376827, 0.87934, 0.213542, 1.74481, 1.78501, 0.00494293, -0.90202, 9.70667, -34.9796, -53.2803)
+skeleton = NodePath("../..")
+
+[node name="Tree_06" parent="Decoration" instance=ExtResource("20_cq76f")]
+transform = Transform3D(-0.201243, 0.976922, -0.376827, 0.87934, 0.213542, 1.74481, 1.78501, 0.00494293, -0.90202, 9.18296, -32.7549, -45.8866)
+skeleton = NodePath("../..")
+
 [node name="Rocks" type="Node3D" parent="."]
 script = ExtResource("23_piuvd")
 show_for_player = true
@@ -1169,6 +1646,10 @@ transform = Transform3D(1.32818, -2.2141, -1.52764, -2.68997, -1.09322, -0.75427
 [node name="Rock24" parent="Rocks" instance=ExtResource("32_5slv0")]
 transform = Transform3D(-2.97549, 0.314999, 0.217336, 0.3827, 2.44912, 1.68978, -7.96665e-08, 1.7037, -2.46929, 44.6909, -1.31164, -1.58313)
 
+[node name="Messages" type="Node3D" parent="."]
+transform = Transform3D(-2.49803, 0, 0.0993252, 0, 2.5, 0, -0.0993252, 0, -2.49803, 0, 0, 0)
+visible = false
+
 [node name="Trigger - 02" type="Area3D" parent="."]
 transform = Transform3D(0.93398, 0, 0.357325, 0, 1, 0, -0.357325, 0, 0.93398, 46.0196, 0, -18.7729)
 script = ExtResource("39_5auo8")
@@ -1188,16 +1669,382 @@ libraries = {
 transform = Transform3D(-0.997901, 0, 0.0647586, 0, 1, 0, -0.0647586, 0, -0.997901, 0.406391, -0.00282008, -5.72428)
 
 [node name="SecretMessage" parent="Trigger - 02/Creature" instance=ExtResource("40_oke65")]
-transform = Transform3D(1.80516, 0, -0.63924, 0, 1.915, 0, 0.63924, 0, 1.80516, 0.439, 0.883, -1.976)
+transform = Transform3D(2.3566, 0, -0.834516, 0, 2.5, 0, 0.834516, 0, 2.3566, 0.438999, 1.35066, -1.976)
 image = ExtResource("41_j0oxx")
 billboard = true
 
-[node name="SecretMessage2" parent="Trigger - 02" instance=ExtResource("40_oke65")]
-transform = Transform3D(-0.634786, 0, 1.79876, 0, 1.90748, 0, -1.79876, 0, -0.634786, 39.8179, 1.57045, -21.2738)
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.976518, 0, -0.215434, 0, 1, 0, 0.215434, 0, 0.976518, 36.3413, -0.0216093, -66.0485)
+script = ExtResource("44_1jmtu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0407829, 3.50916, -0.45034)
+shape = SubResource("BoxShape3D_mha0t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area3D"]
+root_node = NodePath("../..")
+
+[node name="Messages2" type="Node3D" parent="."]
+
+[node name="SecretMessage2" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.575307, 0, 1.81866, 0, 1.90748, 0, -1.81866, 0, -0.575307, 39.8759, 1.57045, -21.7476)
 top_level = true
 image = ExtResource("42_y8sm1")
 
+[node name="SecretMessage50" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.557154, 0, -1.8243, 0, 1.90748, 0, 1.8243, 0, 0.557154, 47.1735, 1.57045, -21.4576)
+top_level = true
+image = ExtResource("50_v7pkw")
+
+[node name="SecretMessage51" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.238328, 0.113533, -0.864383, -0.388696, 0.815942, 0, 0.780361, 0.371745, 0.263988, 47.5669, 1.57045, -20.1695)
+top_level = true
+image = ExtResource("42_y8sm1")
+
+[node name="SecretMessage52" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.246124, -0.0954603, -0.864383, 0.32682, 0.842635, -3.72529e-09, 0.80589, -0.312568, 0.263988, 46.7617, 2.22422, -22.806)
+top_level = true
+image = ExtResource("42_y8sm1")
+
+[node name="SecretMessage53" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.245988, 0.0958124, -0.864383, -0.328026, 0.842167, 1.49012e-08, 0.805442, 0.313721, 0.263988, 47.2157, 2.37903, -21.3196)
+top_level = true
+image = ExtResource("42_y8sm1")
+
+[node name="SecretMessage54" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(1.93217, 0, 0.226308, 0, 1.59301, 0, -0.499729, 0, 0.875004, 44.3801, 1.72431, -24.539)
+top_level = true
+image = ExtResource("48_36nkh")
+
+[node name="SecretMessage55" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.572742, -1.57366, -1.49012e-08, -1.02881e-07, -2.99849e-08, 0.903796, -3.64165, 0.247498, -2.98023e-08, 40.375, 0.112801, -25.7266)
+top_level = true
+image = ExtResource("48_36nkh")
+
+[node name="SecretMessage67" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-3.58063, -0.378878, -3.32441e-08, -0.874572, 1.54341, 0.063974, -0.062061, 0.109523, -0.901529, 36.4033, 1.09262, -23.8331)
+top_level = true
+image = ExtResource("48_36nkh")
+
+[node name="SecretMessage68" type="Node3D" parent="Messages2"]
+transform = Transform3D(-10.6063, -0.170576, 0.168049, -0.267027, 4.53141, 0.0639741, -2.03161, 0.294929, -0.885728, 43.441, 1.93766, -42.4342)
+top_level = true
+script = ExtResource("52_2okrx")
+image = ExtResource("48_36nkh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Messages2/SecretMessage68"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+layers = 512
+material_override = SubResource("StandardMaterial3D_a8gaf")
+cast_shadow = 0
+ignore_occlusion_culling = true
+visibility_range_end = 10.0
+visibility_range_end_margin = 1.0
+mesh = SubResource("QuadMesh_cfuhv")
+
+[node name="SecretMessage69" type="Node3D" parent="Messages2"]
+transform = Transform3D(-10.6063, -0.170576, 0.168049, -0.267027, 4.53141, 0.0639741, -2.03161, 0.294929, -0.885728, 44.1743, 2.23795, -46.6238)
+top_level = true
+script = ExtResource("52_2okrx")
+image = ExtResource("48_36nkh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Messages2/SecretMessage69"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+layers = 512
+material_override = SubResource("StandardMaterial3D_5787s")
+cast_shadow = 0
+ignore_occlusion_culling = true
+visibility_range_end = 10.0
+visibility_range_end_margin = 1.0
+mesh = SubResource("QuadMesh_cfuhv")
+
+[node name="SecretMessage56" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-1.71615, -0.133331, -4.31806e-08, -7.37249e-08, -3.35801e-08, 1, -0.0558512, 4.09687, 6.79124e-09, 41.8405, 0.112801, -30.2496)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage57" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.469415, -0.142154, -6.21375e-09, 0, -2.1439e-08, 0.490468, -0.142154, -0.469415, -2.05188e-08, 42.1693, 0.112801, -27.2578)
+top_level = true
+image = ExtResource("47_c8a3i")
+
+[node name="SecretMessage58" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.473053, 0.129537, 5.66224e-09, -4.16925e-16, -2.1439e-08, 0.490468, 0.129537, -0.473053, -2.06778e-08, 40.3689, 0.112801, -29.7022)
+top_level = true
+image = ExtResource("47_c8a3i")
+
+[node name="SecretMessage59" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.876298, 1.2091, 0, -0.481769, -2.19925, 0, 0, 0, 1, 40.3689, 1.89874, -33.8854)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage60" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.477465, -2.38883, 0, 0.87865, -1.29811, 0, 0, 0, 1, 40.3689, 1.89874, -33.8854)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage61" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.804754, 1.11038, 0.395754, -0.481769, -2.19925, 0, 0.346798, -0.478505, 0.918357, 38.0827, 1.89874, -34.7479)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage62" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.438484, -2.1938, 0.395754, 0.87865, -1.29811, 0, 0.188959, 0.945389, 0.918357, 38.0827, 1.89874, -34.7479)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage63" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.798781, 1.10214, -0.411212, -0.481769, -2.19925, -1.66954e-08, -0.360344, 0.497195, 0.91154, 43.3688, 1.89874, -34.2922)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage64" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.435229, -2.17751, -0.411212, 0.87865, -1.29811, 3.17211e-08, -0.19634, -0.982316, 0.91154, 43.3688, 1.89874, -34.2922)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage65" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(1.05473, 0, -4.77532, 0, 4.89041, 0, 4.77532, 0, 1.05473, 49.8355, 3.23462, -34.2675)
+top_level = true
+image = ExtResource("55_w2fa3")
+
+[node name="SecretMessage66" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(2.95395, 0, 3.89748, 0, 4.89041, 0, -3.89748, 0, 2.95395, 33.4158, 3.23462, -29.8362)
+top_level = true
+image = ExtResource("55_w2fa3")
+
+[node name="SecretMessage3" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.575307, 0, 1.81866, 0, 1.90748, 0, -1.81866, 0, -0.575307, 41.1591, 1.57045, -17.6912)
+top_level = true
+image = ExtResource("42_y8sm1")
+
+[node name="SecretMessage16" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.588991, 0.493765, -3.60246e-08, 1.44558e-08, 2.3895e-08, 0.76858, 0.493766, -0.58899, 0, 41.5421, 0.0761825, -19.0837)
+top_level = true
+
+[node name="SecretMessage4" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.152474, 0, 0.482001, 0, 0.505542, 0, -0.482001, 0, -0.152474, 40.325, 0.90688, -20.3281)
+top_level = true
+image = ExtResource("47_c8a3i")
+
+[node name="SecretMessage5" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.152474, 0, 0.482001, 0, 0.505542, 0, -0.482001, 0, -0.152474, 41.192, 0.79413, -17.5874)
+top_level = true
+image = ExtResource("47_c8a3i")
+
+[node name="SecretMessage6" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.152474, 0, 0.482001, 0, 0.505542, 0, -0.482001, 0, -0.152474, 40.1994, 2.49464, -20.7251)
+top_level = true
+image = ExtResource("47_c8a3i")
+
+[node name="SecretMessage7" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.152474, 0, 0.482001, 0, 0.505542, 0, -0.482001, 0, -0.152474, 40.8461, 2.56781, -18.6808)
+top_level = true
+image = ExtResource("47_c8a3i")
+
+[node name="SecretMessage8" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.152474, 0, 0.482001, 0, 0.505542, 0, -0.482001, 0, -0.152474, 40.6966, 1.68241, -19.1534)
+top_level = true
+image = ExtResource("47_c8a3i")
+
+[node name="SecretMessage9" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.289935, 0, 0.916541, 0, 0.961304, 0, -0.916541, 0, -0.289935, 40.3436, 1.95088, -20.2692)
+top_level = true
+
+[node name="SecretMessage10" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.250207, 0.422336, -0.155286, 0.442964, 0.262427, -1.49012e-08, 0.0791495, -0.1336, -0.490889, 41.8476, 0.652572, -23.7493)
+top_level = true
+
+[node name="SecretMessage11" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.417383, 0.258385, 0.155286, -0.271005, 0.437768, 0, -0.132033, -0.0817365, 0.490889, 39.8816, 2.43182, -23.1274)
+top_level = true
+
+[node name="SecretMessage12" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.474093, -0.127308, 0.155286, 0.133526, 0.497248, 0, -0.149973, 0.040272, 0.490889, 39.8816, 1.86266, -23.1274)
+top_level = true
+
+[node name="SecretMessage17" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.253546, -0.42034, 0.155286, 0.440871, 0.265929, -3.72529e-09, -0.0802056, 0.132969, 0.490889, 39.8816, 1.0969, -23.1274)
+top_level = true
+
+[node name="SecretMessage13" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.495047, 0.132934, 0.048399, 0.133526, 0.497248, 4.91174e-09, -0.0467432, 0.0125519, -0.512585, 41.851, 2.36969, -23.7323)
+top_level = true
+
+[node name="SecretMessage14" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.672316, 0, 0.494172, 0, 1.14307, 0, -2.29929, 0, 0.144497, 41.5223, 1.08154, -13.3862)
+top_level = true
+image = ExtResource("48_36nkh")
+
+[node name="SecretMessage15" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(2.96161, 0.102717, -0.200536, -0.31523, 1.13761, 0, 1.25243, 0.0434379, 0.474205, 50.0216, 1.08154, -16.7865)
+top_level = true
+image = ExtResource("48_36nkh")
+
+[node name="SecretMessage18" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(2.42536, 4.7759e-15, -1.60537, 5.27703e-15, 2.90853, -1.9373e-14, 1.60537, 2.06664e-14, 2.42536, 2.35222, 3.28721, -2.5456)
+top_level = true
+image = ExtResource("52_0qlur")
+billboard = true
+
+[node name="SecretMessage26" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(2.11846, 2.12109e-14, 1.99291, 5.27703e-15, 2.90853, -1.9373e-14, -1.99291, 8.72435e-17, 2.11846, -0.413354, 2.22095, 4.52755)
+top_level = true
+image = ExtResource("57_0pbwa")
+billboard = true
+
+[node name="SecretMessage19" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.480378, 1.27352e-15, -0.608898, 3.95532e-16, 0.775577, -3.68698e-15, 0.608898, 5.51081e-15, 0.480378, 1.3902, 1.30039, -3.11769)
+top_level = true
+image = ExtResource("53_j1urx")
+billboard = true
+
+[node name="SecretMessage20" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.483269, 4.49687, -6.18878e-08, -7.54154e-08, 1.2715e-07, 1.80412, 2.17181, 1.00064, 4.8876e-08, 6.30508, -0.0165816, 0.809495)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage21" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-1.29307, 3.74897, -6.18878e-08, -9.34088e-08, 5.60696e-08, 1.80412, 1.81061, 2.67737, 4.8876e-08, 8.67875, 0.119643, 2.04887)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage22" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.432241, 0.605242, 2.6456e-08, 0, -3.25099e-08, 0.743741, 0.605242, 0.432241, 1.88939e-08, 12.7522, 0.119643, 3.62001)
+top_level = true
+image = ExtResource("59_20us7")
+
+[node name="SecretMessage27" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.0113953, 0.513606, 2.24504e-08, -7.42634e-16, -2.2456e-08, 0.513733, 0.513606, 0.0113953, 4.98105e-10, 12.4828, 0.119642, 3.0019)
+top_level = true
+image = ExtResource("60_kqfr5")
+
+[node name="SecretMessage28" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.702968, 0.206215, 0.68067, -0.281487, 0.959565, 0, -0.653147, -0.1916, 0.73259, 12.4828, 2.43391, 4.26476)
+top_level = true
+
+[node name="SecretMessage29" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.500597, -0.534875, 0.68067, 0.730115, 0.683325, 0, -0.465119, 0.496967, 0.73259, 12.5377, 1.23861, 4.21368)
+top_level = true
+
+[node name="SecretMessage30" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-1.58078, 0.0234024, -0.969393, 0.0313165, 1.85421, -0.00630426, 0.96917, -0.0217438, -1.58094, 16.8714, 1.27967, 12.3799)
+top_level = true
+image = ExtResource("42_y8sm1")
+
+[node name="SecretMessage36" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.96917, -0.0217438, -1.58094, 0.0313165, 1.85421, -0.00630426, 1.58078, -0.0234024, 0.969393, 19.5001, 1.27968, 6.05062)
+top_level = true
+image = ExtResource("42_y8sm1")
+
+[node name="SecretMessage37" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-8.86245, 0.16062, 3.21731, 0.159239, 9.42833, -0.032056, -3.21737, 0.0242028, -8.86384, 9.53226, 5.3904, 20.4229)
+top_level = true
+image = ExtResource("55_w2fa3")
+
+[node name="SecretMessage38" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-7.75049, 0.153815, -5.36898, 0.0967075, 9.42833, 0.130507, 5.37031, 0.0522045, -7.75092, 3.81092, 3.71414, 7.70236)
+top_level = true
+image = ExtResource("61_sf73i")
+
+[node name="SecretMessage31" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(1.35879, 3.11565, -0.0198524, 0.000621144, 0.0590272, 1.8543, 1.51545, -2.79359, 0.0170396, 15.7413, -0.0249681, 10.5787)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage39" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.00661003, 4.124, -0.315604, -2.03509, 0.000923675, -0.0330125, -0.0356283, 0.712362, 1.82714, 29.1164, 2.264, 7.95973)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage42" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.99966, -0.0260897, -1.14042e-09, 0, -4.37114e-08, 1, 0.0260897, 0.99966, 4.36965e-08, 32.7171, 0.0862136, 9.53203)
+top_level = true
+
+[node name="SecretMessage44" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.0709751, -0.997478, 4.36012e-08, 0, 4.37114e-08, 1, -0.997478, -0.0709751, 3.10242e-09, 41.7958, 0.0862138, 5.77568)
+top_level = true
+
+[node name="SecretMessage45" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.232855, 0.303145, -1.32509e-08, 1.81051e-16, 1.67089e-08, 0.382255, 0.303145, -0.232855, 1.01784e-08, 39.5956, 0.0862138, 6.01258)
+top_level = true
+image = ExtResource("47_c8a3i")
+
+[node name="SecretMessage46" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.0208984, 0.381683, -1.66839e-08, 1.81051e-16, 1.67089e-08, 0.382255, 0.381683, -0.0208984, 9.13499e-10, 38.4745, 0.0862138, 8.7039)
+top_level = true
+image = ExtResource("47_c8a3i")
+
+[node name="SecretMessage47" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.381238, 0.0278692, -2.43639e-09, -0.0158073, 0.216237, 0.314818, 0.0229526, -0.31398, 0.216814, 36.1727, 1.1146, 6.54048)
+top_level = true
+image = ExtResource("52_0qlur")
+
+[node name="SecretMessage48" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.545216, -0.056397, 0.108777, -0.0313964, 0.415236, 0.37265, -0.118437, -0.369693, 0.401962, 37.356, 1.30939, 5.94481)
+top_level = true
+image = ExtResource("54_bagv8")
+
+[node name="SecretMessage49" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(1.20272, 0.0313762, 0.0760264, 0, 1.11436, -0.459898, -0.0822465, 0.458826, 1.11176, 44.173, 3.6548, -7.1404)
+top_level = true
+image = ExtResource("53_j1urx")
+billboard = true
+
+[node name="SecretMessage43" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.722147, -0.69174, -3.02369e-08, 1.75747e-15, -4.37114e-08, 1, 0.69174, 0.722147, 3.1566e-08, 32.664, 0.0862136, 8.63376)
+top_level = true
+
+[node name="SecretMessage41" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.00595798, 4.11927, 0.327518, -2.03509, 0.000923678, -0.0330125, -0.0357431, -0.739222, 1.82504, 29.1164, 2.264, 16.6665)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage40" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-3.95124e-07, -6.89623e-10, 7.53284, -0.0157767, 9.03939, -9.21891e-17, -9.03939, -0.0157767, -3.29271e-07, 37.375, 4.11533, 11.5264)
+top_level = true
+image = ExtResource("55_w2fa3")
+
+[node name="SecretMessage32" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(1.67823, 2.36752, -0.0229128, 0.0128937, 0.0527537, 1.8543, 1.15165, -3.45064, 0.0126282, 16.1413, -0.0637022, 10.5909)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage33" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(1.32319, 3.17956, -0.0253996, 0.0128937, 0.0527537, 1.8543, 1.54658, -2.72075, 0.00627115, 19.1262, -0.0637022, 7.70956)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage35" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(1.64919, 2.45224, -0.0232185, 0.0128937, 0.0527537, 1.8543, 1.19285, -3.39095, 0.0120569, 18.191, -0.0637022, 7.32578)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage34" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(1.79955, 1.9549, -0.0213081, 0.0128937, 0.0527537, 1.8543, 0.950965, -3.70006, 0.0151799, 17.4467, -0.0637022, 8.49637)
+top_level = true
+image = ExtResource("53_3hp55")
+
+[node name="SecretMessage25" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(-0.432241, 0.605242, 2.6456e-08, 0, -3.25099e-08, 0.743741, 0.605242, 0.432241, 1.88939e-08, 11.1929, 0.119643, 2.54762)
+top_level = true
+image = ExtResource("59_20us7")
+
+[node name="SecretMessage23" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.432392, 0.605453, 2.64652e-08, 0, -3.25213e-08, 0.744, -0.605453, 0.432392, 1.89004e-08, 12.1172, 0.119643, 3.70704)
+top_level = true
+image = ExtResource("59_20us7")
+
+[node name="SecretMessage24" parent="Messages2" instance=ExtResource("40_oke65")]
+transform = Transform3D(0.432392, 0.605453, 2.64652e-08, 0, -3.25213e-08, 0.744, -0.605453, 0.432392, 1.89004e-08, 9.84731, 0.119643, 2.79248)
+top_level = true
+image = ExtResource("59_20us7")
+
+[connection signal="animation_finished" from="LevelCustsceneStart/AnimationPlayer" to="LevelCustsceneStart" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Trigger - 01" to="Trigger - 01" method="_on_body_entered"]
 [connection signal="body_entered" from="Trigger - 02" to="Trigger - 02" method="_on_body_entered"]
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 
+[editable path="Player"]
+[editable path="Player/Camera3D/Camera"]
 [editable path="ItemPickup"]

@@ -13,7 +13,7 @@ extends Resource
 @export var save_picture:bool = true
 @export_global_dir var save_location:String = "user://"
 @export_group("Window Settings")
-@export var window_mode:String
+@export var window_mode:int
 @export var window_size:Vector2i
 @export var custom_window_sizes:Array[Vector2i]
 @export var v_sync:bool = true

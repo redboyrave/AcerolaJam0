@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 @export var image:Texture :set = set_image
@@ -33,17 +34,19 @@ func is_ready(node:Node3D)->void:
 func create_material() -> StandardMaterial3D:
 	var mat:StandardMaterial3D = StandardMaterial3D.new()
 	mat.albedo_texture = image
+	mat.emission_enabled = true
+	mat.emission_texture = image
+	mat.emission = Color.from_hsv(randf(),randf_range(.4,.8),randf_range(.4,.8))
+	#mat.emission_energy_multiplier = 1.25
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
 
 	mat.alpha_scissor_threshold = clip_threshold
 	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	var billboard_flag:BaseMaterial3D.BillboardMode
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
+	var billboard_flag:BaseMaterial3D.BillboardMode = BaseMaterial3D.BILLBOARD_DISABLED
 	if billboard:
 		billboard_flag = BaseMaterial3D.BILLBOARD_ENABLED
 		mat.billboard_keep_scale = true
-	else:
-		billboard_flag = BaseMaterial3D.BILLBOARD_DISABLED
 	mat.billboard_mode =  billboard_flag
 
 	return mat

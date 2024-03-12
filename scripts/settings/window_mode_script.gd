@@ -14,7 +14,7 @@ func _ready() -> void:
 	option_button.select(opt)
 
 func _on_button_item_selected(index: int) -> void:
-	SaveManager.preferences.window_mode = options[index]
+	SaveManager.preferences.window_mode = index
 	match index:
 		0: ##Full Screen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
