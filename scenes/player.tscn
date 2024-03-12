@@ -219,6 +219,16 @@ surface_material_override/1 = SubResource("ShaderMaterial_2avhy")
 [node name="Camera3D" parent="Camera3D/Camera/SubViewport" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, 1.5, -0.104)
 
+[node name="SpotLight3D2" type="SpotLight3D" parent="Camera3D/Camera"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.35, 0.199999, 0.3)
+light_energy = 0.05
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+spot_range = 1.25
+spot_attenuation = 1.86607
+spot_angle = 10.0
+spot_angle_attenuation = 0.420448
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D"]
 libraries = {
 "": SubResource("AnimationLibrary_a38va")

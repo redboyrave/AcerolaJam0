@@ -69,12 +69,12 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if !is_picture_selected: return
 	if event.is_pressed():
-		big_picture.picture = null
 		if animation_player.is_playing(): return
 		animation_player.play_backwards("toggle_picture")
 		await animation_player.animation_finished
 		black_fade.hide()
 		big_picture.hide()
+		big_picture.picture = null
 		is_picture_selected = false
 
 

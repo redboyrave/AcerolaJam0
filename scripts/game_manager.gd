@@ -6,6 +6,7 @@ var camera:HeroCamera
 
 const DIALOG:PackedScene = preload("res://scenes/dialog.tscn")
 const PAUSE = preload("res://scenes/pause.tscn")
+const END_SCREEN = preload("res://scenes/end_screen.tscn")
 
 var dialog_scene:Dialog
 
@@ -91,3 +92,8 @@ func capture_mouse()->void:
 
 func free_mouse()->void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func end() -> void:
+	var level:Node3D = get_tree().get_nodes_in_group("Level")[0]
+	get_tree().root.add_child(END_SCREEN.instantiate())
+	level.queue_free()

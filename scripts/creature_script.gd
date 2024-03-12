@@ -9,3 +9,4 @@ func play(animation:StringName, speed:float = 1) -> void:
 	animation_player.speed_scale = speed
 	await animation_player.animation_finished
 	animation_player.speed_scale = 1
+

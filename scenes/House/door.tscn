@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cspcd8nr634ms"]
+[gd_scene load_steps=5 format=3 uid="uid://cspcd8nr634ms"]
 
 [ext_resource type="ArrayMesh" uid="uid://texf6mb20mci" path="res://scenes/House/meshes/House_Cube_009.res" id="1_pd80y"]
 [ext_resource type="Script" path="res://scripts/door_script.gd" id="2_u4l07"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8v1e7"]
 size = Vector3(0.0615234, 1.50635, 0.669128)
+
+[sub_resource type="QuadOccluder3D" id="QuadOccluder3D_43ojj"]
+size = Vector2(0.682861, 1.47266)
 
 [node name="Door" type="AnimatableBody3D"]
 transform = Transform3D(-0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, -0.173648, 0, 0, 0)
@@ -18,4 +21,10 @@ shape = SubResource("BoxShape3D_8v1e7")
 
 [node name="Door" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0, 0)
+layers = 32768
+ignore_occlusion_culling = true
 mesh = ExtResource("1_pd80y")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="Door"]
+transform = Transform3D(-4.47035e-08, 0, -1, 0, 1, 0, 1, 0, -4.47035e-08, 0.0146729, 0.748962, 0.32371)
+occluder = SubResource("QuadOccluder3D_43ojj")

@@ -65,6 +65,12 @@ func _has_menu() -> void:
 
 func _ready() -> void:
 	margin_container.modulate = Color.TRANSPARENT
+	await get_tree().create_timer(60).timeout
+	fade_out(margin_container)
+	var tree_tweens:Array[Tween] = get_tree().get_processed_tweens()
+	for tween in tree_tweens:
+		await tween.finished
+	queue_free()
 
 func _physics_process(_delta: float) -> void:
 	if (walk_done

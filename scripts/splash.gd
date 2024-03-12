@@ -7,6 +7,7 @@ var _menu:Node
 
 func _ready() -> void:
 	AudioManager.stop_all()
+	GameManager.is_menu = true
 	_menu = MENU.instantiate()
 	animation_player.play("Splash")
 	await animation_player.animation_finished
