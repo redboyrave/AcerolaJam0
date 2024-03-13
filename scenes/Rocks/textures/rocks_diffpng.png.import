@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://duytov1jkkgtd"
-path.s3tc="res://.godot/imported/rocks_diffpng.png-ab8a1852788641fc3815145580886b9e.s3tc.ctex"
+path.s3tc="res://godot/imported/rocks_diffpng.png-ab8a1852788641fc3815145580886b9e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://scenes/Rocks/textures/rocks_diffpng.png"
-dest_files=["res://.godot/imported/rocks_diffpng.png-ab8a1852788641fc3815145580886b9e.s3tc.ctex"]
+dest_files=["res://godot/imported/rocks_diffpng.png-ab8a1852788641fc3815145580886b9e.s3tc.ctex"]
 
 [params]
 

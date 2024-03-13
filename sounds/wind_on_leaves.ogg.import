@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://cagn2pgoe2bmh"
-path="res://.godot/imported/wind_on_leaves.ogg-b638da445acb9612ddbe1d05654aa69f.oggvorbisstr"
+path="res://godot/imported/wind_on_leaves.ogg-b638da445acb9612ddbe1d05654aa69f.oggvorbisstr"
 
 [deps]
 
 source_file="res://sounds/wind_on_leaves.ogg"
-dest_files=["res://.godot/imported/wind_on_leaves.ogg-b638da445acb9612ddbe1d05654aa69f.oggvorbisstr"]
+dest_files=["res://godot/imported/wind_on_leaves.ogg-b638da445acb9612ddbe1d05654aa69f.oggvorbisstr"]
 
 [params]
 

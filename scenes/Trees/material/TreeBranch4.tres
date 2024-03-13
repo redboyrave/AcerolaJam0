@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dcuuj3cfbb0q0"]
 
-[ext_resource type="Shader" uid="uid://b0rsy6b5sb0qg" path="res://scenes/Trees/branch_sway_shader.tres" id="1_6fron"]
+[ext_resource type="Shader" path="res://scenes/Trees/branch_sway_shader.tres" id="1_6fron"]
 [ext_resource type="Texture2D" uid="uid://dfk53h7ee3na2" path="res://scenes/Trees/textures/branch04.png" id="2_85xof"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_thsi8"]

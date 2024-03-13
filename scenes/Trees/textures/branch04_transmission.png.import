@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4rtcnwaseajy"
-path="res://.godot/imported/branch04_transmission.png-3096903089bcde1c7ab4522914c53e33.ctex"
+path="res://godot/imported/branch04_transmission.png-3096903089bcde1c7ab4522914c53e33.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://scenes/Trees/textures/branch04_transmission.png"
-dest_files=["res://.godot/imported/branch04_transmission.png-3096903089bcde1c7ab4522914c53e33.ctex"]
+dest_files=["res://godot/imported/branch04_transmission.png-3096903089bcde1c7ab4522914c53e33.ctex"]
 
 [params]
 

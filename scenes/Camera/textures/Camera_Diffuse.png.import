@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0pjxkqcmpax3"
-path.s3tc="res://.godot/imported/Camera_Diffuse.png-df64970d7504cf84286734ceae90fba1.s3tc.ctex"
+path.s3tc="res://godot/imported/Camera_Diffuse.png-df64970d7504cf84286734ceae90fba1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -13,7 +13,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://scenes/Camera/textures/Camera_Diffuse.png"
-dest_files=["res://.godot/imported/Camera_Diffuse.png-df64970d7504cf84286734ceae90fba1.s3tc.ctex"]
+dest_files=["res://godot/imported/Camera_Diffuse.png-df64970d7504cf84286734ceae90fba1.s3tc.ctex"]
 
 [params]
 

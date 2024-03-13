@@ -907,24 +907,24 @@ _data = {
 "cutscene_f_part2": SubResource("Animation_b3ild")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ab6no"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b15u7"]
 transparency = 3
 alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_texture = ExtResource("48_36nkh")
 emission_enabled = true
-emission = Color(0.494096, 0.252502, 0.45698, 1)
+emission = Color(0.216738, 0.356198, 0.711219, 1)
 emission_texture = ExtResource("48_36nkh")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eg6y7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5ton"]
 transparency = 3
 alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_texture = ExtResource("48_36nkh")
 emission_enabled = true
-emission = Color(0.161044, 0.383556, 0.745692, 1)
+emission = Color(0.448931, 0.243949, 0.593115, 1)
 emission_texture = ExtResource("48_36nkh")
 
 [node name="Level" type="Node3D" groups=["Level"]]
@@ -2375,7 +2375,7 @@ image = ExtResource("48_36nkh")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Messages2/SecretMessage68"]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 layers = 512
-material_override = SubResource("StandardMaterial3D_ab6no")
+material_override = SubResource("StandardMaterial3D_b15u7")
 cast_shadow = 0
 ignore_occlusion_culling = true
 visibility_range_end = 10.0
@@ -2391,7 +2391,7 @@ image = ExtResource("48_36nkh")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Messages2/SecretMessage69"]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 layers = 512
-material_override = SubResource("StandardMaterial3D_eg6y7")
+material_override = SubResource("StandardMaterial3D_s5ton")
 cast_shadow = 0
 ignore_occlusion_culling = true
 visibility_range_end = 10.0

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c288e2svk4dbe"
-path.s3tc="res://.godot/imported/blurr.png-55079badcc9e1cb2d991aef77a6006f2.s3tc.ctex"
+path.s3tc="res://godot/imported/blurr.png-55079badcc9e1cb2d991aef77a6006f2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://scenes/Camera/textures/blurr.png"
-dest_files=["res://.godot/imported/blurr.png-55079badcc9e1cb2d991aef77a6006f2.s3tc.ctex"]
+dest_files=["res://godot/imported/blurr.png-55079badcc9e1cb2d991aef77a6006f2.s3tc.ctex"]
 
 [params]
 

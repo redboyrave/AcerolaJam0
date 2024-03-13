@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dglshquy1y2an"
-path.s3tc="res://.godot/imported/shoe.png-7e1c0fbcb64fb40d4cf871fd9c1c2dea.s3tc.ctex"
+path.s3tc="res://godot/imported/shoe.png-7e1c0fbcb64fb40d4cf871fd9c1c2dea.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://resources/messages/shoe.png"
-dest_files=["res://.godot/imported/shoe.png-7e1c0fbcb64fb40d4cf871fd9c1c2dea.s3tc.ctex"]
+dest_files=["res://godot/imported/shoe.png-7e1c0fbcb64fb40d4cf871fd9c1c2dea.s3tc.ctex"]
 
 [params]
 

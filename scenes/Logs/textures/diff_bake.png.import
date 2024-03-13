@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqvumq1qbaoci"
-path.s3tc="res://.godot/imported/diff_bake.png-e4cb05a731609039b9837f931cf9e82f.s3tc.ctex"
+path.s3tc="res://godot/imported/diff_bake.png-e4cb05a731609039b9837f931cf9e82f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://scenes/Logs/textures/diff_bake.png"
-dest_files=["res://.godot/imported/diff_bake.png-e4cb05a731609039b9837f931cf9e82f.s3tc.ctex"]
+dest_files=["res://godot/imported/diff_bake.png-e4cb05a731609039b9837f931cf9e82f.s3tc.ctex"]
 
 [params]
 

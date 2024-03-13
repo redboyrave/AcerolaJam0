@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c75k1o74tyum8"
-path.s3tc="res://.godot/imported/creature_message.png-d10b8ddad179e22c6bd78019322887ab.s3tc.ctex"
+path.s3tc="res://godot/imported/creature_message.png-d10b8ddad179e22c6bd78019322887ab.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://resources/messages/creature_message.png"
-dest_files=["res://.godot/imported/creature_message.png-d10b8ddad179e22c6bd78019322887ab.s3tc.ctex"]
+dest_files=["res://godot/imported/creature_message.png-d10b8ddad179e22c6bd78019322887ab.s3tc.ctex"]
 
 [params]
 

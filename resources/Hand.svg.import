@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bq3thyg4awg57"
-path="res://.godot/imported/Hand.svg-7cf08e32a786723364b1fbb42e742f59.ctex"
+path="res://godot/imported/Hand.svg-7cf08e32a786723364b1fbb42e742f59.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://resources/Hand.svg"
-dest_files=["res://.godot/imported/Hand.svg-7cf08e32a786723364b1fbb42e742f59.ctex"]
+dest_files=["res://godot/imported/Hand.svg-7cf08e32a786723364b1fbb42e742f59.ctex"]
 
 [params]
 

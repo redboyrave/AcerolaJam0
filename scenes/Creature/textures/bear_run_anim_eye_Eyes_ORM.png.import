@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmi0jes038syf"
-path.s3tc="res://.godot/imported/bear_run_anim_eye_Eyes_ORM.png-329e61526074ff572b403462eb4b3b25.s3tc.ctex"
+path.s3tc="res://godot/imported/bear_run_anim_eye_Eyes_ORM.png-329e61526074ff572b403462eb4b3b25.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -13,7 +13,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://scenes/Creature/textures/bear_run_anim_eye_Eyes_ORM.png"
-dest_files=["res://.godot/imported/bear_run_anim_eye_Eyes_ORM.png-329e61526074ff572b403462eb4b3b25.s3tc.ctex"]
+dest_files=["res://godot/imported/bear_run_anim_eye_Eyes_ORM.png-329e61526074ff572b403462eb4b3b25.s3tc.ctex"]
 
 [params]
 

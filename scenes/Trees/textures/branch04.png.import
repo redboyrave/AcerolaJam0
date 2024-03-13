@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfk53h7ee3na2"
-path.s3tc="res://.godot/imported/branch04.png-fa1a74c5a6b1b85b74467bcf209811ff.s3tc.ctex"
+path.s3tc="res://godot/imported/branch04.png-fa1a74c5a6b1b85b74467bcf209811ff.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://scenes/Trees/textures/branch04.png"
-dest_files=["res://.godot/imported/branch04.png-fa1a74c5a6b1b85b74467bcf209811ff.s3tc.ctex"]
+dest_files=["res://godot/imported/branch04.png-fa1a74c5a6b1b85b74467bcf209811ff.s3tc.ctex"]
 
 [params]
 

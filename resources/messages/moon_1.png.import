@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnhfkq2iykqn5"
-path.s3tc="res://.godot/imported/moon_1.png-688efb53e525dc0ecb7af077aea7ca33.s3tc.ctex"
+path.s3tc="res://godot/imported/moon_1.png-688efb53e525dc0ecb7af077aea7ca33.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://resources/messages/moon_1.png"
-dest_files=["res://.godot/imported/moon_1.png-688efb53e525dc0ecb7af077aea7ca33.s3tc.ctex"]
+dest_files=["res://godot/imported/moon_1.png-688efb53e525dc0ecb7af077aea7ca33.s3tc.ctex"]
 
 [params]
 

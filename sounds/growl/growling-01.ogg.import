@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://dxun84aa7qwwf"
-path="res://.godot/imported/growling-01.ogg-f0004ebd1f1d2932b5ae5e459c369074.oggvorbisstr"
+path="res://godot/imported/growling-01.ogg-f0004ebd1f1d2932b5ae5e459c369074.oggvorbisstr"
 
 [deps]
 
 source_file="res://sounds/growl/growling-01.ogg"
-dest_files=["res://.godot/imported/growling-01.ogg-f0004ebd1f1d2932b5ae5e459c369074.oggvorbisstr"]
+dest_files=["res://godot/imported/growling-01.ogg-f0004ebd1f1d2932b5ae5e459c369074.oggvorbisstr"]
 
 [params]
 

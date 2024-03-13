@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cc0nxwrvec8u4"
-path.s3tc="res://.godot/imported/House_ceramic_roof_01_rough_1k.png-53d74a8c91f500417493427bc698494b.s3tc.ctex"
+path.s3tc="res://godot/imported/House_ceramic_roof_01_rough_1k.png-53d74a8c91f500417493427bc698494b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -13,7 +13,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://scenes/House/textures/House_ceramic_roof_01_rough_1k.png"
-dest_files=["res://.godot/imported/House_ceramic_roof_01_rough_1k.png-53d74a8c91f500417493427bc698494b.s3tc.ctex"]
+dest_files=["res://godot/imported/House_ceramic_roof_01_rough_1k.png-53d74a8c91f500417493427bc698494b.s3tc.ctex"]
 
 [params]
 

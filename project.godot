@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Acerola-Jam"
+config/name="Shutter"
 config/tags=PackedStringArray("jam", "v4")
 run/main_scene="res://scenes/splash.tscn"
+config/use_hidden_project_data_directory=false
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://Iconx256.png"

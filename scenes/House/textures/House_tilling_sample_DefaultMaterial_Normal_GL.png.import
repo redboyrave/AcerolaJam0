@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5ys1ui5eofer"
-path.s3tc="res://.godot/imported/House_tilling_sample_DefaultMaterial_Normal_GL.png-11947b658780cb1e7f160ee937df1935.s3tc.ctex"
+path.s3tc="res://godot/imported/House_tilling_sample_DefaultMaterial_Normal_GL.png-11947b658780cb1e7f160ee937df1935.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -13,7 +13,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://scenes/House/textures/House_tilling_sample_DefaultMaterial_Normal_GL.png"
-dest_files=["res://.godot/imported/House_tilling_sample_DefaultMaterial_Normal_GL.png-11947b658780cb1e7f160ee937df1935.s3tc.ctex"]
+dest_files=["res://godot/imported/House_tilling_sample_DefaultMaterial_Normal_GL.png-11947b658780cb1e7f160ee937df1935.s3tc.ctex"]
 
 [params]
 

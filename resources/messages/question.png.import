@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://p4c2ioaob2md"
-path.s3tc="res://.godot/imported/question.png-549e9d6325056fbf152e4a380a3b6879.s3tc.ctex"
+path.s3tc="res://godot/imported/question.png-549e9d6325056fbf152e4a380a3b6879.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://resources/messages/question.png"
-dest_files=["res://.godot/imported/question.png-549e9d6325056fbf152e4a380a3b6879.s3tc.ctex"]
+dest_files=["res://godot/imported/question.png-549e9d6325056fbf152e4a380a3b6879.s3tc.ctex"]
 
 [params]
 

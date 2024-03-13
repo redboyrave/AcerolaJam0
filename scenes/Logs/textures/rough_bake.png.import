@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bg6f6glf8487h"
-path.s3tc="res://.godot/imported/rough_bake.png-8406593f8dbe3468de9385164407e963.s3tc.ctex"
+path.s3tc="res://godot/imported/rough_bake.png-8406593f8dbe3468de9385164407e963.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://scenes/Logs/textures/rough_bake.png"
-dest_files=["res://.godot/imported/rough_bake.png-8406593f8dbe3468de9385164407e963.s3tc.ctex"]
+dest_files=["res://godot/imported/rough_bake.png-8406593f8dbe3468de9385164407e963.s3tc.ctex"]
 
 [params]
 

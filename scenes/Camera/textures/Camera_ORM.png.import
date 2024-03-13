@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bny0om6fvmidq"
-path.s3tc="res://.godot/imported/Camera_ORM.png-0de590b8dbc09135cd4a697fbbf6b9cd.s3tc.ctex"
+path.s3tc="res://godot/imported/Camera_ORM.png-0de590b8dbc09135cd4a697fbbf6b9cd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -13,7 +13,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://scenes/Camera/textures/Camera_ORM.png"
-dest_files=["res://.godot/imported/Camera_ORM.png-0de590b8dbc09135cd4a697fbbf6b9cd.s3tc.ctex"]
+dest_files=["res://godot/imported/Camera_ORM.png-0de590b8dbc09135cd4a697fbbf6b9cd.s3tc.ctex"]
 
 [params]
 

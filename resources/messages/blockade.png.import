@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bivsjvkpyvog7"
-path.s3tc="res://.godot/imported/blockade.png-a6b814d8e5ff2851107c20e8190c302f.s3tc.ctex"
+path.s3tc="res://godot/imported/blockade.png-a6b814d8e5ff2851107c20e8190c302f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://resources/messages/blockade.png"
-dest_files=["res://.godot/imported/blockade.png-a6b814d8e5ff2851107c20e8190c302f.s3tc.ctex"]
+dest_files=["res://godot/imported/blockade.png-a6b814d8e5ff2851107c20e8190c302f.s3tc.ctex"]
 
 [params]
 

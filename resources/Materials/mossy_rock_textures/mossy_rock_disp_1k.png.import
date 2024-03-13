@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7vlig102rarx"
-path.s3tc="res://.godot/imported/mossy_rock_disp_1k.png-0f5be3917a887d518a612989c3096ade.s3tc.ctex"
+path.s3tc="res://godot/imported/mossy_rock_disp_1k.png-0f5be3917a887d518a612989c3096ade.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://resources/Materials/mossy_rock_textures/mossy_rock_disp_1k.png"
-dest_files=["res://.godot/imported/mossy_rock_disp_1k.png-0f5be3917a887d518a612989c3096ade.s3tc.ctex"]
+dest_files=["res://godot/imported/mossy_rock_disp_1k.png-0f5be3917a887d518a612989c3096ade.s3tc.ctex"]
 
 [params]
 
