@@ -8,6 +8,7 @@ const MENU = preload("res://scenes/menu.tscn")
 
 func _ready() -> void:
 	GameManager.is_menu = true
+	GameManager.free_mouse()
 	fade_in()
 	var _about:CanvasLayer = ABOUT_SCREEN.instantiate()
 	await get_tree().create_timer(5).timeout

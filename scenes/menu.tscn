@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dlkisvghcsofh"]
+[gd_scene load_steps=38 format=3 uid="uid://dlkisvghcsofh"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_nijnr"]
 [ext_resource type="ArrayMesh" uid="uid://muni65xgbamt" path="res://scenes/Terrain/meshes/part1.res" id="1_xqh21"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cceg64sw20rpq" path="res://scenes/Trees/tree_01.tscn" id="10_pqmo0"]
 [ext_resource type="PackedScene" uid="uid://b4xk5qbwvkoy0" path="res://scenes/Trees/tree_03.tscn" id="11_a7rv4"]
 [ext_resource type="ArrayOccluder3D" uid="uid://sftjs8arssf5" path="res://scenes/menu_occluder.occ" id="15_hq04t"]
+[ext_resource type="Texture2D" uid="uid://4gk68ca1gnk1" path="res://resources/Shutter.svg" id="17_jv3wm"]
 
 [sub_resource type="Curve" id="Curve_1bvaa"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -375,6 +376,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
+texture = ExtResource("17_jv3wm")
 expand_mode = 1
 stretch_mode = 5
 

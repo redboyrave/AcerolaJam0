@@ -58,6 +58,7 @@ func free_children(node:Node)->void:
 func _ready() -> void:
 	grid_container.columns = grid_columns
 	populate_pictures()
+	continue_button.grab_focus()
 
 #func _on_mouse_enter(picture:PictureIcon) -> void:
 	#current_hover = picture
