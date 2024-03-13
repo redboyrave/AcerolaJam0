@@ -14,7 +14,7 @@ func _ready() -> void:
 	get_tree().root.add_child(_menu)
 	queue_free()
 
-func _input(event) -> void:
+func _input(event:InputEvent) -> void:
 	if event.is_pressed():
 		##Skip
 		await fade_to_black()
@@ -22,7 +22,6 @@ func _input(event) -> void:
 
 func fade_to_black() -> void:
 	var tween:Tween = get_tree().create_tween()
-	$ColorRect2
 	tween.tween_property($ColorRect2,"modulate",Color.WHITE,.5)
 	await tween.finished
 	queue_free()

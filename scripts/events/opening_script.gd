@@ -9,6 +9,7 @@ const FIRST_SCENE_V_2 = preload("res://scenes/first_scene_v2.tscn")
 
 func _ready() -> void:
 	await get_tree().create_timer(.5).timeout ##delay
+	GameManager.capture_mouse()
 	animation_player.play("fade_in")
 
 func _unhandled_input(event: InputEvent) -> void:
